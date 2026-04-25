@@ -25,7 +25,7 @@ describe('Navigation', () => {
   it('calls onTabChange when a tab is clicked', () => {
     const onTabChange = vi.fn();
     render(<Navigation activeTab="recipes" onTabChange={onTabChange} />);
-    fireEvent.click(screen.getByText('買い物リスト'));
+    fireEvent.click(screen.getByText('おかいもの'));
     expect(onTabChange).toHaveBeenCalledWith('shopping-list');
   });
 

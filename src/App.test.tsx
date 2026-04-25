@@ -31,17 +31,17 @@ describe('App', () => {
   it('switches to shopping-list tab when clicked', () => {
     render(<App />);
 
-    fireEvent.click(screen.getByRole('button', { name: /買い物リスト/ }));
+    fireEvent.click(screen.getByRole('button', { name: /おかいもの/ }));
 
-    expect(screen.getByRole('heading', { level: 1, name: '買い物リスト' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: 'おかいもの' })).toBeInTheDocument();
   });
 
   it('switches to store-settings tab when clicked', () => {
     render(<App />);
 
-    fireEvent.click(screen.getByRole('button', { name: /店舗設定/ }));
+    fireEvent.click(screen.getByRole('button', { name: /お店/ }));
 
-    expect(screen.getByRole('heading', { level: 1, name: '店舗設定' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: 'お店' })).toBeInTheDocument();
     expect(screen.getByText('店舗レイアウト')).toBeInTheDocument();
   });
 

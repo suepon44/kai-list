@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <defs>
+    <filter id="n" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.06"/>
+      </feComponentTransfer>
+    </filter>
+  </defs>
+  <rect width="200" height="200" fill="#f5efe8" opacity="0.3"/>
+  <rect width="200" height="200" filter="url(#n)"/>
+  <!-- subtle linen cross-hatch -->
+  <line x1="0" y1="20" x2="200" y2="20" stroke="#e0d5c8" stroke-width="0.3" opacity="0.3"/>
+  <line x1="0" y1="60" x2="200" y2="60" stroke="#e0d5c8" stroke-width="0.2" opacity="0.2"/>
+  <line x1="0" y1="100" x2="200" y2="100" stroke="#e0d5c8" stroke-width="0.3" opacity="0.25"/>
+  <line x1="0" y1="140" x2="200" y2="140" stroke="#e0d5c8" stroke-width="0.2" opacity="0.2"/>
+  <line x1="0" y1="180" x2="200" y2="180" stroke="#e0d5c8" stroke-width="0.3" opacity="0.3"/>
+  <line x1="30" y1="0" x2="30" y2="200" stroke="#e0d5c8" stroke-width="0.2" opacity="0.15"/>
+  <line x1="80" y1="0" x2="80" y2="200" stroke="#e0d5c8" stroke-width="0.2" opacity="0.15"/>
+  <line x1="130" y1="0" x2="130" y2="200" stroke="#e0d5c8" stroke-width="0.2" opacity="0.15"/>
+  <line x1="170" y1="0" x2="170" y2="200" stroke="#e0d5c8" stroke-width="0.2" opacity="0.15"/>
+  <!-- tiny food doodles — very faint -->
+  <circle cx="50" cy="45" r="3" fill="none" stroke="#d4a07a" stroke-width="0.5" opacity="0.12"/>
+  <circle cx="50" cy="45" r="1" fill="#d4a07a" opacity="0.08"/>
+  <circle cx="150" cy="130" r="4" fill="none" stroke="#8bab68" stroke-width="0.4" opacity="0.1"/>
+  <circle cx="148" cy="128" r="1.5" fill="none" stroke="#8bab68" stroke-width="0.3" opacity="0.08"/>
+  <ellipse cx="100" cy="90" rx="5" ry="3" fill="none" stroke="#d4a07a" stroke-width="0.4" opacity="0.1"/>
+  <path d="M25 160 Q28 155 31 160" fill="none" stroke="#8bab68" stroke-width="0.5" opacity="0.1"/>
+  <path d="M28 160 L28 167" stroke="#8bab68" stroke-width="0.4" opacity="0.08"/>
+  <circle cx="170" cy="30" r="2" fill="none" stroke="#c9544d" stroke-width="0.4" opacity="0.08"/>
+  <circle cx="170" cy="30" r="0.8" fill="#c9544d" opacity="0.06"/>
+</svg>

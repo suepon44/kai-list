@@ -7,7 +7,9 @@
   display: flex;
   align-items: stretch;
   height: var(--nav-height);
-  background-color: var(--color-surface);
+  background-color: rgba(255, 253, 249, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.06);
   padding: 0 var(--spacing-xs);
   padding-bottom: env(safe-area-inset-bottom, 0);

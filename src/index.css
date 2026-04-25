@@ -50,6 +50,9 @@
 
   color: var(--color-text);
   background-color: var(--color-bg);
+  background-image: url('/bg-pattern.svg');
+  background-repeat: repeat;
+  background-size: 200px 200px;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
