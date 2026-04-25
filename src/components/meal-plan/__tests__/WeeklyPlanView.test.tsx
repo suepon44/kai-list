@@ -110,14 +110,16 @@ describe('WeeklyPlanView', () => {
     ).toBeInTheDocument();
   });
 
-  it('opens save dialog when saving a non-empty plan', () => {
+  it('saves directly with auto-generated name when no saved plans exist', () => {
+    const onSavePlan = vi.fn();
     render(
-      <WeeklyPlanView {...defaultProps} currentPlan={filledPlan} />,
+      <WeeklyPlanView {...defaultProps} currentPlan={filledPlan} onSavePlan={onSavePlan} />,
     );
     const saveButtons = screen.getAllByText('保存');
     fireEvent.click(saveButtons[0]);
-    expect(screen.getByText('献立を保存')).toBeInTheDocument();
-    expect(screen.getByLabelText('献立名')).toBeInTheDocument();
+    // No dialog should open; onSavePlan is called directly with auto-generated name
+    expect(onSavePlan).toHaveBeenCalledTimes(1);
+    expect(onSavePlan.mock.calls[0][0]).toMatch(/月第\d週/);
   });
 
   it('shows overwrite option when saved plans exist', () => {

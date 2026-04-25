@@ -8,6 +8,34 @@ import { RecipeSelector } from './RecipeSelector';
 import { SavedPlanList } from './SavedPlanList';
 import styles from './WeeklyPlanView.module.css';
 
+/** 日付から「○月第○週（○/○-○/○）」形式の献立名を自動生成する */
+function generatePlanName(dateStr: string): string {
+  const date = new Date(dateStr + 'T00:00:00');
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  // 第何週かを計算（1日〜7日=第1週、8日〜14日=第2週、...）
+  const weekNum = Math.ceil(day / 7);
+  // 金曜日の日付を計算（+4日）
+  const friday = new Date(date);
+  friday.setDate(friday.getDate() + 4);
+  const friMonth = friday.getMonth() + 1;
+  const friDay = friday.getDate();
+  return `${month}月第${weekNum}週（${month}/${day}-${friMonth}/${friDay}）`;
+}
+
+/** 今日の日付から直近の月曜日を YYYY-MM-DD で返す */
+function getThisMonday(): string {
+  const today = new Date();
+  const day = today.getDay(); // 0=Sun, 1=Mon, ...
+  const diff = day === 0 ? -6 : 1 - day; // Monday offset
+  const monday = new Date(today);
+  monday.setDate(today.getDate() + diff);
+  const y = monday.getFullYear();
+  const m = String(monday.getMonth() + 1).padStart(2, '0');
+  const d = String(monday.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
+}
+
 const WEEKDAYS: Weekday[] = [
   'monday',
   'tuesday',
@@ -59,12 +87,8 @@ export const WeeklyPlanView: React.FC<WeeklyPlanViewProps> = ({
 
   // Save dialog state
   const [saveDialogOpen, setSaveDialogOpen] = useState(false);
-  const [planName, setPlanName] = useState('');
-  const [weekStartDate, setWeekStartDate] = useState('');
   const [overwriteId, setOverwriteId] = useState<string>('');
-  const [saveError, setSaveError] = useState('');
   const saveDialogRef = useRef<HTMLDialogElement>(null);
-  const nameInputRef = useRef<HTMLInputElement>(null);
 
   // Saved plan list state
   const [savedListOpen, setSavedListOpen] = useState(false);
@@ -90,18 +114,25 @@ export const WeeklyPlanView: React.FC<WeeklyPlanViewProps> = ({
 
   // --- Save dialog handlers ---
   const handleSaveClick = useCallback(() => {
-    if (isMealPlanEmpty(currentPlan)) {
+    if (isMealPlanEmpty(currentPlan) && extraItems.length === 0) {
       setEmptyConfirmOpen(true);
       return;
     }
-    openSaveDialog();
-  }, [currentPlan]);
+
+    if (savedPlans.length > 0) {
+      // Show dialog to choose overwrite or new
+      setOverwriteId('');
+      setSaveDialogOpen(true);
+    } else {
+      // No saved plans, save directly
+      const weekStart = currentWeekStartDate || getThisMonday();
+      const autoName = generatePlanName(weekStart);
+      onSavePlan(autoName, weekStart);
+    }
+  }, [currentPlan, extraItems, savedPlans, currentWeekStartDate, onSavePlan]);
 
   const openSaveDialog = () => {
-    setPlanName('');
-    setWeekStartDate('');
     setOverwriteId('');
-    setSaveError('');
     setSaveDialogOpen(true);
   };
 
@@ -111,7 +142,6 @@ export const WeeklyPlanView: React.FC<WeeklyPlanViewProps> = ({
 
     if (saveDialogOpen && !dialog.open) {
       dialog.showModal();
-      requestAnimationFrame(() => nameInputRef.current?.focus());
     } else if (!saveDialogOpen && dialog.open) {
       dialog.close();
     }
@@ -145,15 +175,12 @@ export const WeeklyPlanView: React.FC<WeeklyPlanViewProps> = ({
       return;
     }
 
-    const trimmed = planName.trim();
-    if (!trimmed) {
-      setSaveError('献立名を入力してください');
-      return;
-    }
-
-    onSavePlan(trimmed, weekStartDate || undefined);
+    // Auto-generate name from date
+    const weekStart = currentWeekStartDate || getThisMonday();
+    const autoName = generatePlanName(weekStart);
+    onSavePlan(autoName, weekStart);
     setSaveDialogOpen(false);
-  }, [planName, weekStartDate, overwriteId, onSavePlan, onOverwritePlan]);
+  }, [overwriteId, currentWeekStartDate, onSavePlan, onOverwritePlan]);
 
   // --- Empty plan confirmation handlers ---
   const handleEmptyConfirm = useCallback(() => {
@@ -269,9 +296,6 @@ export const WeeklyPlanView: React.FC<WeeklyPlanViewProps> = ({
                 value={overwriteId}
                 onChange={(e) => {
                   setOverwriteId(e.target.value);
-                  if (e.target.value) {
-                    setSaveError('');
-                  }
                 }}
               >
                 <option value="">新規保存</option>
@@ -283,47 +307,6 @@ export const WeeklyPlanView: React.FC<WeeklyPlanViewProps> = ({
               </select>
             </div>
           )}
-
-          {!overwriteId && (
-            <div className={styles.saveDialogField}>
-              <label htmlFor="plan-name-input" className={styles.saveDialogLabel}>
-                献立名
-              </label>
-              <input
-                ref={nameInputRef}
-                id="plan-name-input"
-                type="text"
-                className={styles.saveDialogInput}
-                value={planName}
-                onChange={(e) => {
-                  setPlanName(e.target.value);
-                  setSaveError('');
-                }}
-                placeholder="例: 第1週の献立"
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    handleSaveConfirm();
-                  }
-                }}
-              />
-              {saveError && (
-                <span className={styles.saveDialogError}>{saveError}</span>
-              )}
-            </div>
-          )}
-
-          <div className={styles.saveDialogField}>
-            <label htmlFor="week-start-date-input" className={styles.saveDialogLabel}>
-              週の開始日（任意）
-            </label>
-            <input
-              id="week-start-date-input"
-              type="date"
-              className={styles.saveDialogInput}
-              value={weekStartDate}
-              onChange={(e) => setWeekStartDate(e.target.value)}
-            />
-          </div>
 
           <div className={styles.saveDialogActions}>
             <button
