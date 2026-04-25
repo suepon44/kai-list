@@ -1,0 +1,161 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.sectionTitle {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+  padding-bottom: var(--spacing-xs);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ingredientsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: transparent;
+  color: var(--color-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.addButton:hover {
+  background-color: rgba(46, 125, 50, 0.05);
+  border-color: var(--color-primary);
+}
+
+.addButton:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.sourceSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.sourceTypeToggle {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.sourceTypeButton {
+  flex: 1;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  color: var(--color-text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s ease;
+}
+
+.sourceTypeButton:hover {
+  border-color: var(--color-primary-light);
+}
+
+.sourceTypeButton.active {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+}
+
+.sourceTypeButton:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.sourceFields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.bookFields {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.bookNameField {
+  flex: 2;
+  min-width: 0;
+}
+
+.pageField {
+  flex: 1;
+  min-width: 0;
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  padding-top: var(--spacing-sm);
+}
+
+.cancelButton,
+.submitButton {
+  flex: 1;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.15s ease;
+}
+
+.cancelButton {
+  background-color: var(--color-border);
+  color: var(--color-text);
+}
+
+.cancelButton:hover {
+  background-color: #bdbdbd;
+}
+
+.submitButton {
+  background-color: var(--color-primary);
+  color: #ffffff;
+}
+
+.submitButton:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.cancelButton:focus-visible,
+.submitButton:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.errorList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}

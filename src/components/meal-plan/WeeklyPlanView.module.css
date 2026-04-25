@@ -1,0 +1,221 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--color-text);
+}
+
+.headerActions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.savedButton,
+.saveButton,
+.resetButton {
+  padding: var(--spacing-xs) var(--spacing-md);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.15s ease;
+}
+
+.saveButton {
+  background-color: var(--color-primary);
+  color: #ffffff;
+}
+
+.saveButton:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.savedButton {
+  background-color: var(--color-surface);
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+}
+
+.savedButton:hover {
+  background-color: rgba(46, 125, 50, 0.05);
+}
+
+.resetButton {
+  background-color: var(--color-surface);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+}
+
+.weekStartDateInput {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem;
+  font-family: inherit;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  outline: none;
+}
+
+.weekStartDateInput:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.15);
+}
+
+.resetButton:hover {
+  background-color: var(--color-bg);
+}
+
+.saveButton:focus-visible,
+.savedButton:focus-visible,
+.resetButton:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+/* Save dialog */
+.saveDialog {
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: 0;
+  max-width: 360px;
+  width: calc(100% - var(--spacing-lg) * 2);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+}
+
+.saveDialog::backdrop {
+  background-color: var(--color-overlay);
+}
+
+.saveDialogContent {
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.saveDialogTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--color-text);
+}
+
+.saveDialogField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.saveDialogLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.saveDialogInput {
+  padding: var(--spacing-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-family: inherit;
+  outline: none;
+}
+
+.saveDialogInput:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.15);
+}
+
+.saveDialogError {
+  font-size: 0.8125rem;
+  color: var(--color-danger);
+}
+
+.overwriteSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.overwriteLabel {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+.overwriteSelect {
+  padding: var(--spacing-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-family: inherit;
+  outline: none;
+  background-color: var(--color-surface);
+}
+
+.overwriteSelect:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.15);
+}
+
+.saveDialogActions {
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: flex-end;
+}
+
+.cancelButton,
+.confirmSaveButton {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.15s ease;
+}
+
+.cancelButton {
+  background-color: var(--color-border);
+  color: var(--color-text);
+}
+
+.cancelButton:hover {
+  background-color: #bdbdbd;
+}
+
+.confirmSaveButton {
+  background-color: var(--color-primary);
+  color: #ffffff;
+}
+
+.confirmSaveButton:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.cancelButton:focus-visible,
+.confirmSaveButton:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}

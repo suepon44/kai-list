@@ -1,0 +1,121 @@
+.slot {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--color-primary);
+  color: #ffffff;
+}
+
+.dayLabel {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.dateLabel {
+  font-weight: 400;
+  font-size: 0.75rem;
+  opacity: 0.85;
+}
+
+.addButton {
+  padding: 2px var(--spacing-sm);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-sm);
+  background-color: transparent;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.15s ease;
+}
+
+.addButton:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.addButton:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+.body {
+  padding: var(--spacing-sm);
+  min-height: 60px;
+}
+
+.emptyMessage {
+  color: var(--color-text-secondary);
+  font-size: 0.8125rem;
+  text-align: center;
+  padding: var(--spacing-sm) 0;
+}
+
+.recipeList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.recipeCard {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-sm);
+  background-color: var(--color-bg);
+}
+
+.recipeHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-xs);
+}
+
+.recipeName {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.removeButton {
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--color-danger);
+  font-size: 0.75rem;
+  cursor: pointer;
+  font-family: inherit;
+  line-height: 1;
+}
+
+.removeButton:hover {
+  text-decoration: underline;
+}
+
+.removeButton:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.ingredientList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px var(--spacing-sm);
+}
+
+.ingredientItem {
+  font-size: 0.6875rem;
+  color: var(--color-text-secondary);
+}

@@ -1,0 +1,75 @@
+.row {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: flex-end;
+}
+
+.nameField {
+  flex: 2;
+  min-width: 0;
+}
+
+.quantityField {
+  flex: 1;
+  min-width: 0;
+}
+
+.unitField {
+  flex: 1;
+  min-width: 0;
+}
+
+.categoryField {
+  flex: 1.5;
+  min-width: 0;
+}
+
+.removeButton {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  color: var(--color-danger);
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  padding: 0;
+  font-family: inherit;
+}
+
+.removeButton:hover {
+  background-color: var(--color-danger-light);
+}
+
+.removeButton:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Mobile: stack fields vertically */
+@media (max-width: 480px) {
+  .row {
+    flex-wrap: wrap;
+  }
+
+  .nameField {
+    flex-basis: calc(100% - 44px);
+  }
+
+  .quantityField {
+    flex-basis: calc(33% - var(--spacing-sm));
+  }
+
+  .unitField {
+    flex-basis: calc(33% - var(--spacing-sm));
+  }
+
+  .categoryField {
+    flex-basis: calc(34% - var(--spacing-sm));
+  }
+}

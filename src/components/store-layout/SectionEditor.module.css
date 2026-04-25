@@ -1,0 +1,92 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.sectionNameInput {
+  flex: 1;
+  min-width: 0;
+}
+
+.deleteButton {
+  flex-shrink: 0;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: 1px solid var(--color-danger);
+  border-radius: var(--radius-sm);
+  background-color: transparent;
+  color: var(--color-danger);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.15s ease;
+  white-space: nowrap;
+}
+
+.deleteButton:hover {
+  background-color: var(--color-danger-light);
+}
+
+.deleteButton:focus-visible {
+  outline: 2px solid var(--color-danger);
+  outline-offset: 2px;
+}
+
+.categoryLabel {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.categoryList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.categoryChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px var(--spacing-sm);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background-color: var(--color-bg);
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.categoryChip:hover {
+  border-color: var(--color-primary-light);
+}
+
+.categoryChip:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.categoryChipSelected {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+}
+
+.categoryChipSelected:hover {
+  background-color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+}

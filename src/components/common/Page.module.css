@@ -1,0 +1,14 @@
+.page {
+  padding: var(--spacing-md);
+  padding-bottom: calc(var(--nav-height) + var(--spacing-md));
+  min-height: calc(100vh - var(--header-height));
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .page {
+    padding: var(--spacing-lg);
+    padding-bottom: calc(var(--nav-height) + var(--spacing-lg));
+  }
+}
