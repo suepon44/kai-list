@@ -16,8 +16,8 @@
   --color-secondary: #8bab68;
   --color-danger: #c9544d;
   --color-danger-light: #fdf0ef;
-  --color-bg: #fcf9f5;
-  --color-surface: #fffdf9;
+  --color-bg: transparent;
+  --color-surface: rgba(255, 253, 249, 0.3);
   --color-text: #4a3f36;
   --color-text-secondary: #9c8e82;
   --color-border: #ede5db;
@@ -49,10 +49,6 @@
   --radius-full: 9999px;
 
   color: var(--color-text);
-  background-color: var(--color-bg);
-  background-image: url('/bg-pattern.svg');
-  background-repeat: repeat;
-  background-size: 200px 200px;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -75,6 +71,11 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background-image: url('/bg-photo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
 ::selection {

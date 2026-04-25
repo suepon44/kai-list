@@ -7,9 +7,9 @@
   justify-content: center;
   height: var(--header-height);
   padding: 0 var(--spacing-md);
-  background-color: rgba(255, 253, 249, 0.95);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background-color: rgba(255, 253, 249, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   color: var(--color-text);
   box-shadow: var(--shadow-sm);
 }
