@@ -16,7 +16,7 @@ describe('App', () => {
 
   it('renders the Header with the current page title', () => {
     render(<App />);
-    expect(screen.getByRole('heading', { level: 1, name: 'レシピ' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: 'ひーちゃんのレシピ' })).toBeInTheDocument();
   });
 
   it('switches to meal-plan tab when clicked', () => {
