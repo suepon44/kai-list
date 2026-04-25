@@ -4,10 +4,12 @@ import { RecipeList } from './components/recipe';
 import { WeeklyPlanView } from './components/meal-plan';
 import { ShoppingListView } from './components/shopping-list';
 import { StoreLayoutList } from './components/store-layout';
+import { DiaryPage } from './components/diary';
 import { useRecipes } from './hooks/useRecipes';
 import { useMealPlan } from './hooks/useMealPlan';
 import { useShoppingList } from './hooks/useShoppingList';
 import { useStoreLayout } from './hooks/useStoreLayout';
+import { useDiary } from './hooks/useDiary';
 import './App.css';
 
 /** タブIDから表示タイトルを取得する */
@@ -62,6 +64,18 @@ function App() {
     addCustomCategory,
     deleteCustomCategory,
   } = useStoreLayout();
+
+  const {
+    dateRecipeMap,
+    recipeRanking,
+    categoryBalance,
+    staleRecipes,
+    selectedMonth,
+    goToPreviousMonth,
+    goToNextMonth,
+    dateRange,
+    setDateRange,
+  } = useDiary(savedPlans, recipes);
 
   const renderPage = () => {
     switch (activeTab) {
@@ -119,6 +133,20 @@ function App() {
             onDelete={deleteStoreLayout}
             onAddCustomCategory={addCustomCategory}
             onDeleteCustomCategory={deleteCustomCategory}
+          />
+        );
+      case 'diary':
+        return (
+          <DiaryPage
+            dateRecipeMap={dateRecipeMap}
+            recipeRanking={recipeRanking}
+            categoryBalance={categoryBalance}
+            staleRecipes={staleRecipes}
+            selectedMonth={selectedMonth}
+            goToPreviousMonth={goToPreviousMonth}
+            goToNextMonth={goToNextMonth}
+            dateRange={dateRange}
+            setDateRange={setDateRange}
           />
         );
       default:

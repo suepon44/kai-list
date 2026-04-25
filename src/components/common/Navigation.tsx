@@ -12,6 +12,7 @@ export const NAV_ITEMS: NavItem[] = [
   { id: 'meal-plan', label: '献立', icon: '📅' },
   { id: 'shopping-list', label: '買い物リスト', icon: '🛒' },
   { id: 'store-settings', label: '店舗設定', icon: '🏪' },
+  { id: 'diary', label: 'ごはん日記', icon: '📔' },
 ];
 
 export interface NavigationProps {

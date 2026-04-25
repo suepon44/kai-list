@@ -51,4 +51,10 @@ describe('App', () => {
     // We verify the app renders without error, which means ErrorBoundary is working.
     expect(screen.getByRole('main')).toBeInTheDocument();
   });
+
+  it('switches to diary tab when clicked', () => {
+    render(<App />);
+    fireEvent.click(screen.getByRole('button', { name: /ごはん日記/ }));
+    expect(screen.getByRole('heading', { level: 1, name: 'ごはん日記' })).toBeInTheDocument();
+  });
 });

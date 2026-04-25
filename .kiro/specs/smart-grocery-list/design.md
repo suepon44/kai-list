@@ -597,3 +597,86 @@ test('並べ替え前後で材料の総数と分量が一致する', () => {
 | Hooks Layer | 70%以上 | コンポーネントテスト |
 | UI Layer | 60%以上 | コンポーネントテスト |
 
+
+## ごはん日記（履歴振り返り機能）
+
+### 概要
+
+保存済み週間献立データを活用し、過去の献立をカレンダー表示、レシピ使用頻度ランキング、カテゴリバランス分析、最近使っていないレシピの提示を行う。ナビゲーションに「ごはん日記」タブ（📔）を追加する。
+
+### ドメインロジック (`domain/diary.ts`)
+
+```typescript
+/**
+ * 保存済み献立から日付→レシピIDのマッピングを構築する。
+ * weekStartDate が設定されている献立のみ対象。
+ */
+function buildDateRecipeMap(
+  savedPlans: SavedMealPlan[],
+  recipes: Recipe[]
+): Map<string, { recipeName: string; recipeId: string }[]>;
+
+/**
+ * レシピの使用回数ランキングを算出する。
+ * 期間指定がある場合はその範囲内の献立のみ集計。
+ */
+function computeRecipeRanking(
+  savedPlans: SavedMealPlan[],
+  recipes: Recipe[],
+  dateRange?: { start: string; end: string }
+): { recipeId: string; recipeName: string; count: number }[];
+
+/**
+ * カテゴリ別の使用比率を算出する。
+ */
+function computeCategoryBalance(
+  savedPlans: SavedMealPlan[],
+  recipes: Recipe[],
+  dateRange?: { start: string; end: string }
+): { category: string; count: number; percentage: number }[];
+
+/**
+ * 最近使っていないレシピを最終使用日の古い順に返す。
+ * 一度も使われていないレシピは最終使用日 null で先頭に配置。
+ */
+function computeStaleRecipes(
+  savedPlans: SavedMealPlan[],
+  recipes: Recipe[]
+): { recipeId: string; recipeName: string; lastUsedDate: string | null }[];
+```
+
+### コンポーネント構成
+
+```
+src/components/diary/
+├── DiaryPage.tsx           # ごはん日記メインページ（タブ切り替え）
+├── CalendarView.tsx        # 月カレンダー表示
+├── DayDetail.tsx           # 日付タップ時の献立詳細
+├── RecipeRanking.tsx       # レシピランキング表示
+├── CategoryBalance.tsx     # カテゴリバランスグラフ
+├── StaleRecipes.tsx        # 最近作ってないレシピ一覧
+└── index.ts                # バレルエクスポート
+```
+
+### カスタムフック (`hooks/useDiary.ts`)
+
+```typescript
+function useDiary(): {
+  dateRecipeMap: Map<string, ...[]>;
+  recipeRanking: { recipeId: string; recipeName: string; count: number }[];
+  categoryBalance: { category: string; count: number; percentage: number }[];
+  staleRecipes: { recipeId: string; recipeName: string; lastUsedDate: string | null }[];
+  selectedMonth: { year: number; month: number };
+  setSelectedMonth: (year: number, month: number) => void;
+  dateRange: { start: string; end: string } | null;
+  setDateRange: (range: { start: string; end: string } | null) => void;
+};
+```
+
+### カテゴリバランスの表示
+
+CSSのみで円グラフ風の表示を実現する（外部チャートライブラリは使用しない）。各カテゴリを色分けした横棒グラフで表示し、パーセンテージを数値で併記する。
+
+### ナビゲーション更新
+
+`NAV_ITEMS` に `{ id: 'diary', label: 'ごはん日記', icon: '📔' }` を追加。5タブ構成になる。
