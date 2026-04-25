@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import type { StoreLayout } from '../../types';
 import { ConfirmDialog } from '../common';
 import { forceSeedDemoData } from '../../seed-demo';
+import { exportData, importData } from '../../utils/data-transfer';
 import { StoreLayoutEditor } from './StoreLayoutEditor';
 import styles from './StoreLayoutList.module.css';
 
@@ -32,6 +33,8 @@ export const StoreLayoutList: React.FC<StoreLayoutListProps> = ({
   const [editingLayout, setEditingLayout] = useState<StoreLayout | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<string | null>(null);
   const [demoConfirmOpen, setDemoConfirmOpen] = useState(false);
+  const [importConfirmOpen, setImportConfirmOpen] = useState(false);
+  const [importError, setImportError] = useState<string | null>(null);
 
   const handleNewLayout = () => {
     const newLayout = onAdd('');
@@ -150,12 +153,48 @@ export const StoreLayoutList: React.FC<StoreLayoutListProps> = ({
         variant="danger"
       />
 
-      {/* デモデータ読み込みボタン */}
-      <div style={{ marginTop: '32px', paddingTop: '16px', borderTop: '1px solid var(--color-border-light)', textAlign: 'center' }}>
+      {/* データ管理ボタン */}
+      <div style={{ marginTop: '32px', paddingTop: '16px', borderTop: '1px solid var(--color-border-light)', display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <button
+            type="button"
+            style={{
+              padding: '10px 16px',
+              border: '1.5px solid var(--color-primary)',
+              borderRadius: '8px',
+              backgroundColor: 'var(--color-surface)',
+              color: 'var(--color-primary)',
+              fontSize: '0.875rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+              fontFamily: 'inherit',
+            }}
+            onClick={exportData}
+          >
+            📤 データをエクスポート
+          </button>
+          <button
+            type="button"
+            style={{
+              padding: '10px 16px',
+              border: '1.5px solid var(--color-primary)',
+              borderRadius: '8px',
+              backgroundColor: 'var(--color-surface)',
+              color: 'var(--color-primary)',
+              fontSize: '0.875rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+              fontFamily: 'inherit',
+            }}
+            onClick={() => setImportConfirmOpen(true)}
+          >
+            📥 データをインポート
+          </button>
+        </div>
         <button
           type="button"
           style={{
-            padding: '10px 20px',
+            padding: '8px 16px',
             border: '1.5px solid var(--color-border)',
             borderRadius: '8px',
             backgroundColor: 'var(--color-surface)',
@@ -169,7 +208,29 @@ export const StoreLayoutList: React.FC<StoreLayoutListProps> = ({
         >
           🔄 デモデータを読み込む
         </button>
+        {importError && (
+          <p style={{ color: 'var(--color-danger)', fontSize: '0.875rem', margin: 0 }}>
+            {importError}
+          </p>
+        )}
       </div>
+
+      <ConfirmDialog
+        open={importConfirmOpen}
+        title="データのインポート"
+        message="現在のデータが上書きされます。バックアップファイルを選択してください。"
+        confirmLabel="ファイルを選択"
+        cancelLabel="キャンセル"
+        onConfirm={() => {
+          setImportConfirmOpen(false);
+          setImportError(null);
+          importData().catch((err) => {
+            setImportError(err instanceof Error ? err.message : 'インポートに失敗しました');
+          });
+        }}
+        onCancel={() => setImportConfirmOpen(false)}
+        variant="warning"
+      />
 
       <ConfirmDialog
         open={demoConfirmOpen}
