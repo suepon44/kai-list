@@ -8,11 +8,11 @@ export interface NavItem {
 }
 
 export const NAV_ITEMS: NavItem[] = [
-  { id: 'recipes', label: 'レシピ', icon: '📖' },
-  { id: 'meal-plan', label: '献立', icon: '📅' },
-  { id: 'shopping-list', label: '買い物リスト', icon: '🛒' },
-  { id: 'store-settings', label: '店舗設定', icon: '🏪' },
-  { id: 'diary', label: 'ごはん日記', icon: '📔' },
+  { id: 'recipes', label: 'レシピ', icon: '🍳' },
+  { id: 'meal-plan', label: '献立', icon: '🗓️' },
+  { id: 'shopping-list', label: 'おかいもの', icon: '🧺' },
+  { id: 'store-settings', label: 'お店', icon: '🏠' },
+  { id: 'diary', label: 'ごはん日記', icon: '📖' },
 ];
 
 export interface NavigationProps {
