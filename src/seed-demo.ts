@@ -1,5 +1,5 @@
 import { STORAGE_KEYS } from './constants';
-import type { Recipe, Ingredient, SavedMealPlan, ExtraItem } from './types';
+import type { Recipe, Ingredient, SavedMealPlan, ExtraItem, StoreLayout } from './types';
 
 // --- Helper ---
 const ts = '2026-02-28T00:00:00.000Z';
@@ -427,12 +427,92 @@ export function seedDemoData(): void {
 export function forceSeedDemoData(): void {
   const recipes = buildRecipes();
   const mealPlans = buildMealPlans(recipes);
+  const storeLayouts = buildStoreLayouts();
 
   localStorage.setItem(STORAGE_KEYS.RECIPES, JSON.stringify(recipes));
   localStorage.setItem(STORAGE_KEYS.MEAL_PLANS, JSON.stringify(mealPlans));
+  localStorage.setItem(STORAGE_KEYS.STORE_LAYOUTS, JSON.stringify(storeLayouts));
   localStorage.setItem(STORAGE_KEYS.EXTRA_ITEMS_HISTORY, JSON.stringify(EXTRA_ITEMS));
 
   console.log(
-    `[seed-demo] Seeded ${recipes.length} recipes, ${mealPlans.length} meal plans, ${EXTRA_ITEMS.length} extra items`,
+    `[seed-demo] Seeded ${recipes.length} recipes, ${mealPlans.length} meal plans, ${storeLayouts.length} store layouts, ${EXTRA_ITEMS.length} extra items`,
   );
+}
+
+// --- Store Layouts ---
+function buildStoreLayouts(): StoreLayout[] {
+  return [
+    {
+      id: crypto.randomUUID(),
+      storeName: 'デモスーパー',
+      aisles: [
+        {
+          id: crypto.randomUUID(),
+          name: '入口・青果',
+          order: 0,
+          sections: [
+            { id: crypto.randomUUID(), name: '野菜コーナー', categories: ['野菜'], order: 0 },
+            { id: crypto.randomUUID(), name: '果物コーナー', categories: ['果物'], order: 1 },
+          ],
+        },
+        {
+          id: crypto.randomUUID(),
+          name: '鮮魚・精肉',
+          order: 1,
+          sections: [
+            { id: crypto.randomUUID(), name: '鮮魚コーナー', categories: ['魚介類'], order: 0 },
+            { id: crypto.randomUUID(), name: '精肉コーナー', categories: ['肉類'], order: 1 },
+          ],
+        },
+        {
+          id: crypto.randomUUID(),
+          name: '乳製品・卵',
+          order: 2,
+          sections: [
+            { id: crypto.randomUUID(), name: '乳製品コーナー', categories: ['乳製品'], order: 0 },
+          ],
+        },
+        {
+          id: crypto.randomUUID(),
+          name: '乾物・麺類',
+          order: 3,
+          sections: [
+            { id: crypto.randomUUID(), name: '乾物・麺コーナー', categories: ['乾物'], order: 0 },
+          ],
+        },
+        {
+          id: crypto.randomUUID(),
+          name: '調味料',
+          order: 4,
+          sections: [
+            { id: crypto.randomUUID(), name: '調味料コーナー', categories: ['調味料'], order: 0 },
+          ],
+        },
+        {
+          id: crypto.randomUUID(),
+          name: '冷凍食品',
+          order: 5,
+          sections: [
+            { id: crypto.randomUUID(), name: '冷凍食品コーナー', categories: ['冷凍食品'], order: 0 },
+          ],
+        },
+        {
+          id: crypto.randomUUID(),
+          name: '飲料',
+          order: 6,
+          sections: [
+            { id: crypto.randomUUID(), name: '飲料コーナー', categories: ['飲料'], order: 0 },
+          ],
+        },
+        {
+          id: crypto.randomUUID(),
+          name: '日用品・レジ前',
+          order: 7,
+          sections: [
+            { id: crypto.randomUUID(), name: '日用品コーナー', categories: ['日用品'], order: 0 },
+          ],
+        },
+      ],
+    },
+  ];
 }
