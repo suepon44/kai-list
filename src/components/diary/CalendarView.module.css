@@ -3,6 +3,7 @@
   border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
+  max-width: 100%;
 }
 
 .header {
@@ -78,6 +79,8 @@
   font-family: inherit;
   text-align: left;
   width: 100%;
+  min-width: 0;
+  overflow: hidden;
   transition: background-color 0.15s ease;
 }
 
@@ -124,6 +127,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  max-width: 100%;
 }
 
 .moreLabel {

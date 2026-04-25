@@ -212,7 +212,7 @@ export const ShoppingListView: React.FC<ShoppingListViewProps> = ({
 
       {!hasShoppingList && (
         <p className={styles.emptyMessage}>
-          献立からリストを生成してください。
+          献立メニューで献立を立てるとお買い物リストが生成できます
         </p>
       )}
     </div>
