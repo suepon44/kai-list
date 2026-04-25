@@ -4,13 +4,16 @@
   justify-content: center;
   min-height: 100vh;
   padding: var(--spacing-xl);
-  background-color: #ffffff;
+  background-color: var(--color-bg);
 }
 
 .content {
   text-align: center;
   max-width: 400px;
+  background-color: var(--color-surface);
   padding: var(--spacing-xl);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
 }
 
 .icon {
@@ -20,7 +23,7 @@
 }
 
 .title {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   font-weight: 700;
   margin: 0 0 var(--spacing-sm);
   color: var(--color-text);
@@ -36,23 +39,23 @@
 .button {
   display: inline-block;
   padding: 12px var(--spacing-xl);
-  background: none;
-  color: var(--color-primary);
+  background-color: var(--color-primary);
+  color: #ffffff;
   border: none;
-  border-radius: 0;
+  border-radius: var(--radius-md);
   font-size: 0.9375rem;
   font-weight: 600;
   cursor: pointer;
   font-family: inherit;
-  transition: opacity 0.15s ease;
+  transition: background-color 0.2s ease, transform 0.15s ease;
 }
 
 .button:hover {
-  opacity: 0.8;
+  background-color: var(--color-primary-dark);
 }
 
 .button:active {
-  opacity: 0.6;
+  transform: scale(0.97);
 }
 
 .button:focus-visible {

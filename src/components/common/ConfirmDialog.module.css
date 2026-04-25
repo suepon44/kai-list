@@ -21,6 +21,8 @@
 
 .dialog::backdrop {
   background-color: var(--color-overlay);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .content {
@@ -43,7 +45,7 @@
 
 .actions {
   display: flex;
-  gap: var(--spacing-md);
+  gap: var(--spacing-sm);
   justify-content: flex-end;
 }
 
@@ -51,44 +53,45 @@
 .confirmButton {
   padding: 10px var(--spacing-lg);
   border: none;
-  border-radius: 0;
+  border-radius: var(--radius-sm);
   font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
   font-family: inherit;
-  background: none;
-  transition: opacity 0.15s ease;
+  transition: background-color 0.2s ease, transform 0.15s ease;
 }
 
 .cancelButton:active,
 .confirmButton:active {
-  opacity: 0.7;
+  transform: scale(0.97);
 }
 
 .cancelButton {
-  color: var(--color-text-secondary);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  border: 1.5px solid var(--color-border);
 }
 
 .cancelButton:hover {
-  color: var(--color-text);
+  background-color: var(--color-border-light);
 }
 
 .confirmButton.danger {
-  color: var(--color-danger);
-  background: none;
+  background-color: var(--color-danger);
+  color: #ffffff;
 }
 
 .confirmButton.danger:hover {
-  opacity: 0.8;
+  background-color: #c53030;
 }
 
 .confirmButton.warning {
-  color: var(--color-secondary);
-  background: none;
+  background-color: var(--color-secondary);
+  color: #ffffff;
 }
 
 .confirmButton.warning:hover {
-  opacity: 0.8;
+  background-color: #d97706;
 }
 
 .cancelButton:focus-visible,

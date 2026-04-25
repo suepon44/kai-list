@@ -22,6 +22,8 @@
 
 .dialog::backdrop {
   background-color: var(--color-overlay);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .content {
@@ -55,11 +57,13 @@
   cursor: pointer;
   line-height: 1;
   font-family: inherit;
-  transition: color 0.15s ease;
+  border-radius: var(--radius-sm);
+  transition: all 0.15s ease;
 }
 
 .closeButton:hover {
   color: var(--color-text);
+  background-color: var(--color-bg);
 }
 
 .closeButton:focus-visible {
@@ -69,7 +73,7 @@
 
 .list {
   overflow-y: auto;
-  padding: 0;
+  padding: var(--spacing-xs) 0;
   flex: 1;
 }
 
@@ -79,6 +83,7 @@
   justify-content: space-between;
   padding: var(--spacing-md) var(--spacing-lg);
   border-bottom: 1px solid var(--color-border-light);
+  transition: background-color 0.15s ease;
 }
 
 .planItem:last-child {
@@ -93,11 +98,12 @@
   background: none;
   text-align: left;
   font-family: inherit;
+  border-radius: var(--radius-sm);
   transition: opacity 0.15s ease;
 }
 
 .planInfo:hover {
-  opacity: 0.7;
+  opacity: 0.75;
 }
 
 .planInfo:focus-visible {
@@ -108,7 +114,7 @@
 .planName {
   display: block;
   font-size: 0.9375rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--color-text);
 }
 
@@ -120,25 +126,25 @@
 }
 
 .deleteButton {
-  padding: 0;
-  border: none;
-  border-radius: 0;
-  background: none;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1.5px solid var(--color-danger);
+  border-radius: var(--radius-sm);
+  background-color: transparent;
   color: var(--color-danger);
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
   font-family: inherit;
   flex-shrink: 0;
-  transition: opacity 0.15s ease;
+  transition: all 0.2s ease;
 }
 
 .deleteButton:hover {
-  opacity: 0.7;
+  background-color: var(--color-danger-light);
 }
 
 .deleteButton:active {
-  opacity: 0.5;
+  transform: scale(0.97);
 }
 
 .deleteButton:focus-visible {

@@ -1,12 +1,12 @@
 .item {
-  padding: var(--spacing-md) 0;
+  padding: var(--spacing-md);
   border-bottom: 1px solid var(--color-border-light);
-  background-color: #ffffff;
-  transition: opacity 0.25s ease;
+  background-color: var(--color-surface);
+  transition: opacity 0.25s ease, background-color 0.15s ease;
 }
 
 .item:hover {
-  opacity: 0.85;
+  background-color: var(--color-primary-bg);
 }
 
 .item.checked {
@@ -30,18 +30,19 @@
 .toggleArea:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
+  border-radius: var(--radius-sm);
 }
 
 .checkbox {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   border: 2px solid var(--color-border);
-  border-radius: 50%;
+  border-radius: 6px;
   flex-shrink: 0;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight: 700;
   color: var(--color-primary);
   transition: all 0.2s ease;
@@ -69,7 +70,7 @@
 
 .name {
   font-size: 0.9375rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--color-text);
 }
 
@@ -87,7 +88,9 @@
 .sectionLabel {
   font-size: 0.6875rem;
   color: var(--color-primary);
-  padding: 0;
+  background-color: var(--color-primary-bg);
+  padding: 2px var(--spacing-sm);
+  border-radius: var(--radius-full);
   align-self: flex-start;
   font-weight: 500;
 }

@@ -7,7 +7,7 @@
 .label {
   font-size: 0.8125rem;
   font-weight: 600;
-  color: var(--color-text-secondary);
+  color: var(--color-text);
 }
 
 .required {
@@ -17,15 +17,14 @@
 
 .input {
   width: 100%;
-  padding: 10px 0;
-  border: none;
-  border-bottom: 1px solid var(--color-border);
-  border-radius: 0;
+  padding: 10px var(--spacing-md);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
   font-size: 0.9375rem;
   font-family: inherit;
   color: var(--color-text);
-  background-color: transparent;
-  transition: border-color 0.2s ease;
+  background-color: var(--color-surface);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
   -moz-appearance: textfield;
 }
 
@@ -42,13 +41,14 @@
 
 .input:focus {
   outline: none;
-  border-bottom-color: var(--color-primary);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(58, 138, 63, 0.12);
 }
 
 .input.hasError {
-  border-bottom-color: var(--color-danger);
+  border-color: var(--color-danger);
 }
 
 .input.hasError:focus {
-  border-bottom-color: var(--color-danger);
+  box-shadow: 0 0 0 3px rgba(220, 69, 69, 0.12);
 }
