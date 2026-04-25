@@ -142,49 +142,20 @@ export function useShoppingList() {
   const uncheckedCount = totalCount - checkedCount;
 
   /**
-   * 表示用の買い物リスト（未購入が上、購入済みが下）。
-   * sortedList がある場合はグループ内で並べ替え、
-   * ない場合は shoppingList.items を並べ替える。
+   * 表示用の買い物リスト（元の順序のまま）。
    */
   const displayItems = useMemo(() => {
     if (!shoppingList) return [];
-    const items = shoppingList.items;
-    const unchecked = items.filter(
-      (item) => !checkedItems.has(`${item.name}::${item.unit ?? ''}`),
-    );
-    const checked = items.filter((item) =>
-      checkedItems.has(`${item.name}::${item.unit ?? ''}`),
-    );
-    return [...unchecked, ...checked];
-  }, [shoppingList, checkedItems]);
+    return shoppingList.items;
+  }, [shoppingList]);
 
   /**
-   * 表示用の並べ替え済み買い物リスト（各グループ内で未購入が上、購入済みが下）。
+   * 表示用の並べ替え済み買い物リスト（元の順序のまま）。
    */
   const displaySortedList = useMemo((): SortedShoppingList | null => {
     if (!sortedList) return null;
-    return {
-      ...sortedList,
-      groups: sortedList.groups.map((group) => {
-        const unchecked = group.items.filter(
-          (item) => !checkedItems.has(`${item.name}::${item.unit ?? ''}`),
-        );
-        const checked = group.items.filter((item) =>
-          checkedItems.has(`${item.name}::${item.unit ?? ''}`),
-        );
-        return { ...group, items: [...unchecked, ...checked] };
-      }),
-      uncategorized: (() => {
-        const unchecked = sortedList.uncategorized.filter(
-          (item) => !checkedItems.has(`${item.name}::${item.unit ?? ''}`),
-        );
-        const checked = sortedList.uncategorized.filter((item) =>
-          checkedItems.has(`${item.name}::${item.unit ?? ''}`),
-        );
-        return [...unchecked, ...checked];
-      })(),
-    };
-  }, [sortedList, checkedItems]);
+    return sortedList;
+  }, [sortedList]);
 
   return {
     shoppingList,
