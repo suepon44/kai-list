@@ -7,9 +7,14 @@
 .tabBar {
   display: flex;
   gap: var(--spacing-xs);
-  background-color: var(--color-bg);
+  background-color: rgba(255, 253, 249, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-radius: var(--radius-md);
   padding: var(--spacing-xs);
+  position: sticky;
+  top: var(--header-height);
+  z-index: 50;
 }
 
 .tab {
