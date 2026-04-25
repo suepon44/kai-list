@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { ErrorBoundary, Header, Navigation, NAV_ITEMS, Page } from './components/common';
 import { RecipeList } from './components/recipe';
 import { WeeklyPlanView } from './components/meal-plan';
@@ -21,6 +21,11 @@ function getPageTitle(tabId: string): string {
 
 function App() {
   const [activeTab, setActiveTab] = useState('recipes');
+
+  const handleTabChange = useCallback((tabId: string) => {
+    setActiveTab(tabId);
+    window.scrollTo(0, 0);
+  }, []);
 
   // Hooks
   const {
@@ -176,7 +181,7 @@ function App() {
             {renderPage()}
           </Page>
         </div>
-        <Navigation activeTab={activeTab} onTabChange={setActiveTab} />
+        <Navigation activeTab={activeTab} onTabChange={handleTabChange} />
       </div>
     </ErrorBoundary>
   );
