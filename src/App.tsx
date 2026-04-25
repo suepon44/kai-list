@@ -14,6 +14,7 @@ import './App.css';
 
 /** タブIDから表示タイトルを取得する */
 function getPageTitle(tabId: string): string {
+  if (tabId === 'recipes') return 'ひーちゃんのレシピ';
   const item = NAV_ITEMS.find((nav) => nav.id === tabId);
   return item?.label ?? 'スマート買い物リスト';
 }
