@@ -66,7 +66,7 @@
 }
 
 .label {
-  font-size: 0.625rem;
+  font-size: 0.75rem;
   font-weight: 600;
   line-height: 1;
   white-space: nowrap;
@@ -77,6 +77,6 @@
 
 @media (min-width: 768px) {
   .label {
-    font-size: 0.75rem;
+    font-size: 0.875rem;
   }
 }

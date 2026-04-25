@@ -88,7 +88,7 @@
 }
 
 .ingredientCount {
-  font-size: 0.8125rem;
+  font-size: 0.9375rem;
   color: var(--color-text-secondary);
   flex-shrink: 0;
   background-color: var(--color-bg);

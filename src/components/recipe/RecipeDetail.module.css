@@ -32,7 +32,7 @@
   padding: var(--spacing-sm) var(--spacing-md);
   border: 1.5px solid var(--color-border);
   border-radius: var(--radius-sm);
-  font-size: 0.8125rem;
+  font-size: 0.9375rem;
   font-weight: 600;
   cursor: pointer;
   font-family: inherit;
@@ -100,7 +100,7 @@
   color: var(--color-text-secondary);
   padding: var(--spacing-sm) var(--spacing-md);
   border-bottom: 2px solid var(--color-border-light);
-  font-size: 0.8125rem;
+  font-size: 0.9375rem;
   background-color: var(--color-bg);
 }
 
@@ -124,7 +124,7 @@
   border-radius: var(--radius-full);
   background-color: var(--color-bg);
   color: var(--color-text-secondary);
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight: 500;
 }
 
@@ -142,7 +142,7 @@
 .sourceLabel {
   font-weight: 600;
   color: var(--color-text-secondary);
-  font-size: 0.8125rem;
+  font-size: 0.9375rem;
 }
 
 .sourceValue {

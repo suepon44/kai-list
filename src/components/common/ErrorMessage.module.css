@@ -1,6 +1,6 @@
 .error {
   color: var(--color-danger);
-  font-size: 0.8125rem;
+  font-size: 0.9375rem;
   margin-top: var(--spacing-xs);
   display: flex;
   align-items: flex-start;

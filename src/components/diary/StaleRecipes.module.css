@@ -41,14 +41,14 @@
 }
 
 .lastUsedDate {
-  font-size: 0.8125rem;
+  font-size: 0.9375rem;
   color: var(--color-text-secondary);
   flex-shrink: 0;
   font-weight: 500;
 }
 
 .unusedBadge {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight: 700;
   color: var(--color-danger);
   background-color: var(--color-danger-light);

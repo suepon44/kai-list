@@ -7,7 +7,7 @@
   border: none;
   background: none;
   color: var(--color-primary);
-  font-size: 0.6875rem;
+  font-size: 0.875rem;
   font-family: inherit;
   cursor: pointer;
   line-height: 1;
@@ -40,7 +40,7 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
-  font-size: 0.6875rem;
+  font-size: 0.875rem;
   color: var(--color-text-secondary);
 }
 
@@ -53,7 +53,7 @@
   border-radius: 50%;
   background-color: var(--color-primary);
   color: #ffffff;
-  font-size: 0.625rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   flex-shrink: 0;
 }

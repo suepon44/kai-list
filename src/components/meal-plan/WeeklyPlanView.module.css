@@ -74,7 +74,7 @@
   padding: var(--spacing-sm);
   border: 1.5px solid var(--color-border);
   border-radius: var(--radius-sm);
-  font-size: 0.8125rem;
+  font-size: 0.9375rem;
   font-family: inherit;
   background-color: var(--color-surface);
   color: var(--color-text);
@@ -174,7 +174,7 @@
 }
 
 .saveDialogError {
-  font-size: 0.8125rem;
+  font-size: 0.9375rem;
   color: var(--color-danger);
 }
 
@@ -185,7 +185,7 @@
 }
 
 .overwriteLabel {
-  font-size: 0.8125rem;
+  font-size: 0.9375rem;
   color: var(--color-text-secondary);
   font-weight: 500;
 }
