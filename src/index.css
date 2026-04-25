@@ -5,32 +5,36 @@
   font-weight: 400;
   font-size: 16px;
 
-  /* Softer, warmer color palette */
-  --color-primary: #3a8a3f;
-  --color-primary-light: #5cb860;
-  --color-primary-dark: #2d6e30;
-  --color-primary-bg: rgba(58, 138, 63, 0.06);
-  --color-primary-bg-hover: rgba(58, 138, 63, 0.10);
+  /* Flat, minimal color palette */
+  --color-primary: #4CAF50;
+  --color-primary-light: #66BB6A;
+  --color-primary-dark: #388E3C;
+  --color-primary-bg: rgba(76, 175, 80, 0.06);
+  --color-primary-bg-hover: rgba(76, 175, 80, 0.10);
   --color-secondary: #f59e0b;
-  --color-danger: #dc4545;
-  --color-danger-light: #fef2f2;
-  --color-bg: #f8f7f4;
+  --color-danger: #e53935;
+  --color-danger-light: #fff5f5;
+  --color-bg: #ffffff;
   --color-surface: #ffffff;
   --color-text: #1a1a1a;
-  --color-text-secondary: #6b7280;
-  --color-border: #e8e5e0;
-  --color-border-light: #f0ede8;
-  --color-overlay: rgba(0, 0, 0, 0.4);
+  --color-text-secondary: #9e9e9e;
+  --color-border: #e0e0e0;
+  --color-border-light: #f0f0f0;
+  --color-overlay: rgba(0, 0, 0, 0.3);
 
-  /* Shadows */
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+  /* Sunday / Saturday colors for calendar */
+  --color-sunday: #e53935;
+  --color-saturday: #1976d2;
+
+  /* Shadows — only for dialogs/modals */
+  --shadow-xs: none;
+  --shadow-sm: none;
+  --shadow-md: none;
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
 
   /* Layout */
   --header-height: 52px;
-  --nav-height: 64px;
+  --nav-height: 56px;
 
   /* Spacing */
   --spacing-xs: 4px;
@@ -39,15 +43,15 @@
   --spacing-lg: 24px;
   --spacing-xl: 32px;
 
-  /* Radii — more generous */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 20px;
+  /* Radii — minimal: only for dialogs, pills, selected circles */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
   --radius-full: 9999px;
 
   color: var(--color-text);
-  background-color: var(--color-bg);
+  background-color: #ffffff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -70,10 +74,11 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #ffffff;
 }
 
 ::selection {
-  background-color: rgba(58, 138, 63, 0.15);
+  background-color: rgba(76, 175, 80, 0.15);
   color: var(--color-text);
 }
 

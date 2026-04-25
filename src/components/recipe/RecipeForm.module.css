@@ -10,7 +10,7 @@
   color: var(--color-text);
   margin: 0;
   padding-bottom: var(--spacing-sm);
-  border-bottom: 2px solid var(--color-border-light);
+  border-bottom: 1px solid var(--color-border-light);
 }
 
 .ingredientsList {
@@ -26,20 +26,19 @@
   gap: var(--spacing-xs);
   width: 100%;
   padding: 12px var(--spacing-md);
-  border: 2px dashed var(--color-border);
-  border-radius: var(--radius-md);
-  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  background: none;
   color: var(--color-primary);
   font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
   font-family: inherit;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  transition: opacity 0.15s ease;
 }
 
 .addButton:hover {
-  background-color: var(--color-primary-bg);
-  border-color: var(--color-primary-light);
+  opacity: 0.7;
 }
 
 .addButton:focus-visible {
@@ -61,9 +60,10 @@
 .sourceTypeButton {
   flex: 1;
   padding: 10px var(--spacing-md);
-  border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  background-color: var(--color-surface);
+  border: none;
+  border-bottom: 2px solid var(--color-border-light);
+  border-radius: 0;
+  background: none;
   color: var(--color-text-secondary);
   font-size: 0.8125rem;
   font-weight: 600;
@@ -73,15 +73,13 @@
 }
 
 .sourceTypeButton:hover {
-  border-color: var(--color-primary-light);
-  color: var(--color-primary);
+  color: var(--color-text);
 }
 
 .sourceTypeButton.active {
-  background-color: var(--color-primary);
-  color: #ffffff;
-  border-color: var(--color-primary);
-  box-shadow: var(--shadow-xs);
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+  background: none;
 }
 
 .sourceTypeButton:focus-visible {
@@ -112,46 +110,43 @@
 
 .actions {
   display: flex;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-md);
   padding-top: var(--spacing-sm);
+  justify-content: flex-end;
 }
 
 .cancelButton,
 .submitButton {
-  flex: 1;
-  padding: 12px var(--spacing-md);
+  padding: 12px var(--spacing-lg);
   border: none;
-  border-radius: var(--radius-md);
+  border-radius: 0;
   font-size: 0.9375rem;
   font-weight: 600;
   cursor: pointer;
   font-family: inherit;
-  transition: background-color 0.2s ease, transform 0.15s ease;
+  background: none;
+  transition: opacity 0.15s ease;
 }
 
 .cancelButton:active,
 .submitButton:active {
-  transform: scale(0.98);
+  opacity: 0.6;
 }
 
 .cancelButton {
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  border: 1.5px solid var(--color-border);
+  color: var(--color-text-secondary);
 }
 
 .cancelButton:hover {
-  background-color: var(--color-border-light);
+  color: var(--color-text);
 }
 
 .submitButton {
-  background-color: var(--color-primary);
-  color: #ffffff;
-  box-shadow: var(--shadow-xs);
+  color: var(--color-primary);
 }
 
 .submitButton:hover {
-  background-color: var(--color-primary-dark);
+  opacity: 0.8;
 }
 
 .cancelButton:focus-visible,

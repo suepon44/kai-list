@@ -11,11 +11,10 @@
 }
 
 .title {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 700;
   margin: 0;
   color: var(--color-text);
-  letter-spacing: -0.01em;
 }
 
 .headerActions {
@@ -28,65 +27,60 @@
 .resetButton {
   padding: var(--spacing-sm) var(--spacing-md);
   border: none;
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   font-size: 0.8125rem;
   font-weight: 600;
   cursor: pointer;
   font-family: inherit;
-  transition: all 0.2s ease;
+  background: none;
+  transition: opacity 0.15s ease;
 }
 
 .savedButton:active,
 .saveButton:active,
 .resetButton:active {
-  transform: scale(0.97);
+  opacity: 0.6;
 }
 
 .saveButton {
-  background-color: var(--color-primary);
-  color: #ffffff;
-  box-shadow: var(--shadow-xs);
+  color: var(--color-primary);
 }
 
 .saveButton:hover {
-  background-color: var(--color-primary-dark);
+  opacity: 0.7;
 }
 
 .savedButton {
-  background-color: var(--color-surface);
   color: var(--color-primary);
-  border: 1.5px solid var(--color-primary);
 }
 
 .savedButton:hover {
-  background-color: var(--color-primary-bg);
+  opacity: 0.7;
 }
 
 .resetButton {
-  background-color: var(--color-surface);
   color: var(--color-text-secondary);
-  border: 1.5px solid var(--color-border);
 }
 
 .weekStartDateInput {
   padding: var(--spacing-sm);
-  border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-sm);
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  border-radius: 0;
   font-size: 0.8125rem;
   font-family: inherit;
-  background-color: var(--color-surface);
+  background-color: transparent;
   color: var(--color-text);
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease;
 }
 
 .weekStartDateInput:focus {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(58, 138, 63, 0.12);
+  border-bottom-color: var(--color-primary);
 }
 
 .resetButton:hover {
-  background-color: var(--color-bg);
+  color: var(--color-text);
 }
 
 .saveButton:focus-visible,
@@ -99,7 +93,7 @@
 .grid {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
+  gap: 0;
 }
 
 /* Save dialog */
@@ -126,8 +120,6 @@
 
 .saveDialog::backdrop {
   background-color: var(--color-overlay);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
 }
 
 .saveDialogContent {
@@ -151,24 +143,24 @@
 }
 
 .saveDialogLabel {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 600;
-  color: var(--color-text);
+  color: var(--color-text-secondary);
 }
 
 .saveDialogInput {
-  padding: 10px var(--spacing-md);
-  border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-sm);
+  padding: 10px 0;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  border-radius: 0;
   font-size: 0.875rem;
   font-family: inherit;
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease;
 }
 
 .saveDialogInput:focus {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(58, 138, 63, 0.12);
+  border-bottom-color: var(--color-primary);
 }
 
 .saveDialogError {
@@ -189,24 +181,24 @@
 }
 
 .overwriteSelect {
-  padding: 10px var(--spacing-md);
-  border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-sm);
+  padding: 10px 0;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  border-radius: 0;
   font-size: 0.875rem;
   font-family: inherit;
   outline: none;
-  background-color: var(--color-surface);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background-color: transparent;
+  transition: border-color 0.2s ease;
 }
 
 .overwriteSelect:focus {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(58, 138, 63, 0.12);
+  border-bottom-color: var(--color-primary);
 }
 
 .saveDialogActions {
   display: flex;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-md);
   justify-content: flex-end;
 }
 
@@ -214,37 +206,34 @@
 .confirmSaveButton {
   padding: 10px var(--spacing-lg);
   border: none;
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
   font-family: inherit;
-  transition: all 0.2s ease;
+  background: none;
+  transition: opacity 0.15s ease;
 }
 
 .cancelButton:active,
 .confirmSaveButton:active {
-  transform: scale(0.97);
+  opacity: 0.6;
 }
 
 .cancelButton {
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  border: 1.5px solid var(--color-border);
+  color: var(--color-text-secondary);
 }
 
 .cancelButton:hover {
-  background-color: var(--color-border-light);
+  color: var(--color-text);
 }
 
 .confirmSaveButton {
-  background-color: var(--color-primary);
-  color: #ffffff;
-  box-shadow: var(--shadow-xs);
+  color: var(--color-primary);
 }
 
 .confirmSaveButton:hover {
-  background-color: var(--color-primary-dark);
+  opacity: 0.8;
 }
 
 .cancelButton:focus-visible,

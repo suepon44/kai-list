@@ -11,34 +11,31 @@
 }
 
 .title {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 700;
   margin: 0;
   color: var(--color-text);
-  letter-spacing: -0.01em;
 }
 
 .addButton {
-  padding: 10px var(--spacing-lg);
+  padding: 0;
   border: none;
-  border-radius: var(--radius-md);
-  background-color: var(--color-primary);
-  color: #ffffff;
+  border-radius: 0;
+  background: none;
+  color: var(--color-primary);
   font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
   font-family: inherit;
-  transition: all 0.2s ease;
-  box-shadow: var(--shadow-xs);
+  transition: opacity 0.15s ease;
 }
 
 .addButton:hover {
-  background-color: var(--color-primary-dark);
-  box-shadow: var(--shadow-sm);
+  opacity: 0.7;
 }
 
 .addButton:active {
-  transform: scale(0.97);
+  opacity: 0.5;
 }
 
 .addButton:focus-visible {
@@ -49,30 +46,26 @@
 .list {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
 }
 
 .layoutItem {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--spacing-md);
+  padding: var(--spacing-md) 0;
   border: none;
-  border-radius: var(--radius-md);
-  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border-light);
+  background: none;
   cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: var(--shadow-xs);
+  transition: opacity 0.15s ease;
+}
+
+.layoutItem:last-child {
+  border-bottom: none;
 }
 
 .layoutItem:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-1px);
-}
-
-.layoutItem:active {
-  transform: translateY(0);
-  box-shadow: var(--shadow-sm);
+  opacity: 0.7;
 }
 
 .layoutItem:focus-visible {
@@ -82,7 +75,7 @@
 
 .storeName {
   font-size: 0.9375rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--color-text);
 }
 
@@ -90,17 +83,11 @@
   font-size: 0.8125rem;
   color: var(--color-text-secondary);
   flex-shrink: 0;
-  background-color: var(--color-bg);
-  padding: 2px var(--spacing-sm);
-  border-radius: var(--radius-full);
 }
 
 .emptyMessage {
   text-align: center;
-  padding: var(--spacing-xl);
+  padding: var(--spacing-xl) 0;
   color: var(--color-text-secondary);
   font-size: 0.9375rem;
-  background-color: var(--color-surface);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-xs);
 }

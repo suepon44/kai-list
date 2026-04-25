@@ -12,32 +12,31 @@
 }
 
 .title {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 700;
   margin: 0;
   color: var(--color-text);
   word-break: break-word;
-  letter-spacing: -0.01em;
 }
 
 .headerActions {
   display: flex;
-  gap: var(--spacing-xs);
+  gap: var(--spacing-md);
   flex-shrink: 0;
 }
 
 .editButton,
 .deleteButton,
 .backButton {
-  padding: var(--spacing-sm) var(--spacing-md);
-  border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-sm);
+  padding: 0;
+  border: none;
+  border-radius: 0;
   font-size: 0.8125rem;
   font-weight: 600;
   cursor: pointer;
   font-family: inherit;
-  transition: all 0.2s ease;
-  background-color: var(--color-surface);
+  transition: opacity 0.15s ease;
+  background: none;
 }
 
 .backButton {
@@ -45,26 +44,23 @@
 }
 
 .backButton:hover {
-  background-color: var(--color-bg);
-  border-color: var(--color-text-secondary);
+  color: var(--color-text);
 }
 
 .editButton {
   color: var(--color-primary);
-  border-color: var(--color-primary);
 }
 
 .editButton:hover {
-  background-color: var(--color-primary-bg);
+  opacity: 0.7;
 }
 
 .deleteButton {
   color: var(--color-danger);
-  border-color: var(--color-danger);
 }
 
 .deleteButton:hover {
-  background-color: var(--color-danger-light);
+  opacity: 0.7;
 }
 
 .editButton:focus-visible,
@@ -80,7 +76,7 @@
   color: var(--color-text);
   margin: 0;
   padding-bottom: var(--spacing-sm);
-  border-bottom: 2px solid var(--color-border-light);
+  border-bottom: 1px solid var(--color-border-light);
 }
 
 .ingredientTable {
@@ -88,24 +84,20 @@
   border-collapse: separate;
   border-spacing: 0;
   font-size: 0.875rem;
-  background-color: var(--color-surface);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: var(--shadow-xs);
+  background-color: #ffffff;
 }
 
 .ingredientTable th {
   text-align: left;
   font-weight: 600;
   color: var(--color-text-secondary);
-  padding: var(--spacing-sm) var(--spacing-md);
-  border-bottom: 2px solid var(--color-border-light);
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px solid var(--color-border-light);
   font-size: 0.8125rem;
-  background-color: var(--color-bg);
 }
 
 .ingredientTable td {
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: var(--spacing-sm) 0;
   border-bottom: 1px solid var(--color-border-light);
   color: var(--color-text);
 }
@@ -115,14 +107,14 @@
 }
 
 .ingredientTable tr:hover td {
-  background-color: var(--color-primary-bg);
+  opacity: 0.8;
 }
 
 .categoryBadge {
   display: inline-block;
   padding: 2px 8px;
   border-radius: var(--radius-full);
-  background-color: var(--color-bg);
+  background-color: var(--color-border-light);
   color: var(--color-text-secondary);
   font-size: 0.75rem;
   font-weight: 500;
@@ -132,11 +124,9 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xs);
-  padding: var(--spacing-md);
-  background-color: var(--color-surface);
-  border-radius: var(--radius-md);
+  padding: var(--spacing-md) 0;
   font-size: 0.875rem;
-  box-shadow: var(--shadow-xs);
+  border-top: 1px solid var(--color-border-light);
 }
 
 .sourceLabel {
