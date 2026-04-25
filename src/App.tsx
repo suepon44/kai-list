@@ -39,6 +39,11 @@ function App() {
     savedPlans,
     overwritePlan,
     resetPlan,
+    extraItems,
+    addExtraItem,
+    removeExtraItem,
+    clearExtraItems,
+    extraItemsHistory,
   } = useMealPlan();
 
   const {
@@ -95,6 +100,9 @@ function App() {
             currentPlan={currentPlan}
             recipes={recipes}
             savedPlans={savedPlans}
+            extraItems={extraItems}
+            extraItemsHistory={extraItemsHistory}
+            allCategories={allCategories}
             onAssignRecipe={assignRecipe}
             onRemoveRecipe={removeRecipe}
             onSavePlan={savePlan}
@@ -102,6 +110,9 @@ function App() {
             onLoadPlan={loadPlan}
             onDeletePlan={deletePlan}
             onResetPlan={resetPlan}
+            onAddExtraItem={addExtraItem}
+            onRemoveExtraItem={removeExtraItem}
+            onClearExtraItems={clearExtraItems}
           />
         );
       case 'shopping-list':
@@ -109,6 +120,7 @@ function App() {
           <ShoppingListView
             currentPlan={currentPlan}
             recipes={recipes}
+            extraItems={extraItems}
             storeLayouts={storeLayouts}
             hasShoppingList={shoppingList !== null}
             displaySortedList={displaySortedList}

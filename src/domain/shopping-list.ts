@@ -1,5 +1,6 @@
 import type {
   AggregatedIngredient,
+  ExtraItem,
   IngredientWithSource,
   Recipe,
   ShoppingList,
@@ -55,31 +56,83 @@ export function aggregateIngredients(
 }
 
 /**
+ * 調味料・日用品アイテムを AggregatedIngredient[] に変換する。
+ * 各アイテムは source として "調味料・日用品" を持つ。
+ *
+ * @param extraItems - 調味料・日用品アイテムの配列
+ * @returns 集約済み材料の配列
+ */
+export function convertExtraItems(
+  extraItems: ExtraItem[],
+): AggregatedIngredient[] {
+  const map = new Map<string, AggregatedIngredient>();
+
+  for (const item of extraItems) {
+    const key = `${item.name}::`;
+    const existing = map.get(key);
+
+    if (existing) {
+      // 同名アイテムが複数ある場合はソースを追加するだけ
+      existing.sources.push({
+        day: 'monday' as const,
+        recipeName: '調味料・日用品',
+      });
+    } else {
+      map.set(key, {
+        name: item.name,
+        totalQuantity: undefined,
+        unit: undefined,
+        category: item.category,
+        sources: [
+          {
+            day: 'monday' as const,
+            recipeName: '調味料・日用品',
+          },
+        ],
+      });
+    }
+  }
+
+  return Array.from(map.values());
+}
+
+/**
  * 週間献立から買い物リストを生成する。
  * 同一材料（材料名+単位が一致）の分量を合算し、
  * 各材料の使用元（曜日・レシピ名）を内訳として保持する。
+ * 調味料・日用品アイテムも含めて生成する。
  *
  * @param mealPlan - 週間献立
  * @param recipes - レシピ一覧
  * @param mealPlanId - 元の週間献立ID（省略時は空文字列）
- * @returns 買い物リスト。献立が空の場合は null を返す。
+ * @param extraItems - 調味料・日用品アイテム（省略時は空配列）
+ * @returns 買い物リスト。献立が空かつ調味料・日用品もない場合は null を返す。
  */
 export function generateShoppingList(
   mealPlan: WeeklyMealPlan,
   recipes: Recipe[],
   mealPlanId: string = '',
+  extraItems: ExtraItem[] = [],
 ): ShoppingList | null {
-  if (isMealPlanEmpty(mealPlan)) {
+  const hasExtraItems = extraItems.length > 0;
+
+  if (isMealPlanEmpty(mealPlan) && !hasExtraItems) {
     return null;
   }
 
   const allIngredients = extractAllIngredients(mealPlan, recipes);
   const aggregated = aggregateIngredients(allIngredients);
 
+  // 調味料・日用品を追加
+  const extraAggregated = convertExtraItems(extraItems);
+
+  // マージ: 同名アイテムがレシピ材料にもある場合は別項目として追加
+  const allItems = [...aggregated, ...extraAggregated];
+
   return {
     id: crypto.randomUUID(),
     mealPlanId,
-    items: aggregated,
+    items: allItems,
     createdAt: new Date().toISOString(),
   };
 }

@@ -1,3 +1,9 @@
+/** 調味料・日用品アイテム */
+export interface ExtraItem {
+  name: string;
+  category: string | null;
+}
+
 /** レシピの参照元 */
 export interface RecipeSource {
   type: 'book' | 'url';
@@ -38,6 +44,7 @@ export interface SavedMealPlan {
   name: string;                    // 献立名
   plan: WeeklyMealPlan;
   weekStartDate?: string;          // 週の開始日 (ISO 8601 日付文字列、任意)
+  extraItems?: ExtraItem[];        // 調味料・日用品（任意、後方互換性のため）
   createdAt: string;               // 作成日時 (ISO 8601)
 }
 

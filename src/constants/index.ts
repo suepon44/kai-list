@@ -20,4 +20,5 @@ export const STORAGE_KEYS = {
   STORE_LAYOUTS: 'sgl:store-layouts',
   CATEGORIES: 'sgl:categories',
   CHECKLIST_STATE: 'sgl:checklist-state',
+  EXTRA_ITEMS_HISTORY: 'sgl:extra-items-history',
 } as const;

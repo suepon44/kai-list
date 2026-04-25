@@ -63,6 +63,9 @@ const defaultProps = {
   currentPlan: emptyPlan,
   recipes,
   savedPlans: [] as SavedMealPlan[],
+  extraItems: [],
+  extraItemsHistory: [],
+  allCategories: ['野菜', '肉類', '調味料', '日用品'],
   onAssignRecipe: vi.fn(),
   onRemoveRecipe: vi.fn(),
   onSavePlan: vi.fn(),
@@ -70,6 +73,9 @@ const defaultProps = {
   onLoadPlan: vi.fn(),
   onDeletePlan: vi.fn(),
   onResetPlan: vi.fn(),
+  onAddExtraItem: vi.fn(),
+  onRemoveExtraItem: vi.fn(),
+  onClearExtraItems: vi.fn(),
 };
 
 describe('WeeklyPlanView', () => {

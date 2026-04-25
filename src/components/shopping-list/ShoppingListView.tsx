@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import type {
   AggregatedIngredient,
+  ExtraItem,
   Recipe,
   SortedShoppingList,
   StoreLayout,
@@ -15,6 +16,8 @@ export interface ShoppingListViewProps {
   currentPlan: WeeklyMealPlan;
   /** レシピ一覧 */
   recipes: Recipe[];
+  /** 調味料・日用品アイテム */
+  extraItems: ExtraItem[];
   /** 店舗レイアウト一覧 */
   storeLayouts: StoreLayout[];
   /** 買い物リスト生成済みかどうか（shoppingList が null でないか） */
@@ -30,7 +33,7 @@ export interface ShoppingListViewProps {
   /** 未購入カウント */
   uncheckedCount: number;
   /** 買い物リスト生成 */
-  onGenerate: (mealPlan: WeeklyMealPlan, recipes: Recipe[], mealPlanId?: string) => void;
+  onGenerate: (mealPlan: WeeklyMealPlan, recipes: Recipe[], mealPlanId?: string, extraItems?: ExtraItem[]) => void;
   /** 店舗レイアウトで並べ替え */
   onSortByStore: (storeLayout: StoreLayout) => void;
   /** チェックトグル */
@@ -53,6 +56,7 @@ export interface ShoppingListViewProps {
 export const ShoppingListView: React.FC<ShoppingListViewProps> = ({
   currentPlan,
   recipes,
+  extraItems,
   storeLayouts,
   hasShoppingList,
   displaySortedList,
@@ -70,8 +74,8 @@ export const ShoppingListView: React.FC<ShoppingListViewProps> = ({
   const totalCount = checkedCount + uncheckedCount;
 
   const handleGenerate = useCallback(() => {
-    onGenerate(currentPlan, recipes);
-  }, [currentPlan, recipes, onGenerate]);
+    onGenerate(currentPlan, recipes, undefined, extraItems);
+  }, [currentPlan, recipes, extraItems, onGenerate]);
 
   const handleLayoutChange = useCallback(
     (value: string) => {

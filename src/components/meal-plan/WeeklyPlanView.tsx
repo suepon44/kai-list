@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import type { Recipe, SavedMealPlan, Weekday, WeeklyMealPlan } from '../../types';
+import type { ExtraItem, Recipe, SavedMealPlan, Weekday, WeeklyMealPlan } from '../../types';
 import { isMealPlanEmpty } from '../../domain/meal-plan';
 import { ConfirmDialog } from '../common';
 import { DaySlot } from './DaySlot';
+import { ExtraItemsSection } from './ExtraItemsSection';
 import { RecipeSelector } from './RecipeSelector';
 import { SavedPlanList } from './SavedPlanList';
 import styles from './WeeklyPlanView.module.css';
@@ -19,6 +20,9 @@ export interface WeeklyPlanViewProps {
   currentPlan: WeeklyMealPlan;
   recipes: Recipe[];
   savedPlans: SavedMealPlan[];
+  extraItems: ExtraItem[];
+  extraItemsHistory: ExtraItem[];
+  allCategories: string[];
   onAssignRecipe: (day: Weekday, recipeId: string) => void;
   onRemoveRecipe: (day: Weekday, recipeId: string) => void;
   onSavePlan: (name: string, weekStartDate?: string) => void;
@@ -26,12 +30,18 @@ export interface WeeklyPlanViewProps {
   onLoadPlan: (id: string) => void;
   onDeletePlan: (id: string) => void;
   onResetPlan: () => void;
+  onAddExtraItem: (name: string, category: string | null) => void;
+  onRemoveExtraItem: (index: number) => void;
+  onClearExtraItems: () => void;
 }
 
 export const WeeklyPlanView: React.FC<WeeklyPlanViewProps> = ({
   currentPlan,
   recipes,
   savedPlans,
+  extraItems,
+  extraItemsHistory,
+  allCategories,
   onAssignRecipe,
   onRemoveRecipe,
   onSavePlan,
@@ -39,6 +49,9 @@ export const WeeklyPlanView: React.FC<WeeklyPlanViewProps> = ({
   onLoadPlan,
   onDeletePlan,
   onResetPlan,
+  onAddExtraItem,
+  onRemoveExtraItem,
+  onClearExtraItems,
 }) => {
   // Recipe selector state
   const [selectorOpen, setSelectorOpen] = useState(false);
@@ -202,6 +215,16 @@ export const WeeklyPlanView: React.FC<WeeklyPlanViewProps> = ({
           />
         ))}
       </div>
+
+      {/* Extra items section */}
+      <ExtraItemsSection
+        extraItems={extraItems}
+        history={extraItemsHistory}
+        categories={allCategories}
+        onAddItem={onAddExtraItem}
+        onRemoveItem={onRemoveExtraItem}
+        onClearItems={onClearExtraItems}
+      />
 
       {/* Recipe selector dialog */}
       <RecipeSelector

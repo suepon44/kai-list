@@ -4,6 +4,9 @@ export type { WeeklyPlanViewProps } from './WeeklyPlanView';
 export { DaySlot } from './DaySlot';
 export type { DaySlotProps } from './DaySlot';
 
+export { ExtraItemsSection } from './ExtraItemsSection';
+export type { ExtraItemsSectionProps } from './ExtraItemsSection';
+
 export { RecipeSelector } from './RecipeSelector';
 export type { RecipeSelectorProps } from './RecipeSelector';
 

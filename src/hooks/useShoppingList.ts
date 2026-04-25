@@ -1,5 +1,6 @@
 import { useState, useCallback, useMemo } from 'react';
 import type {
+  ExtraItem,
   Recipe,
   ShoppingList,
   SortedShoppingList,
@@ -66,8 +67,8 @@ export function useShoppingList() {
    * 生成時にチェック状態を localStorage から復元する。
    */
   const generate = useCallback(
-    (mealPlan: WeeklyMealPlan, recipes: Recipe[], mealPlanId?: string): void => {
-      const list = generateShoppingList(mealPlan, recipes, mealPlanId);
+    (mealPlan: WeeklyMealPlan, recipes: Recipe[], mealPlanId?: string, extraItems?: ExtraItem[]): void => {
+      const list = generateShoppingList(mealPlan, recipes, mealPlanId, extraItems);
       setShoppingList(list);
       setSortedList(null);
 
