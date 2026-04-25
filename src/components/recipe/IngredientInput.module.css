@@ -67,7 +67,13 @@
   }
 
   .nameField {
-    flex-basis: calc(100% - 48px);
+    flex-basis: calc(100% - 52px);
+    flex-grow: 0;
+  }
+
+  .removeButton {
+    flex-basis: 40px;
+    order: 0;
   }
 
   .quantityField {
