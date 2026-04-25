@@ -5,6 +5,10 @@
   display: flex;
   align-items: flex-start;
   gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background-color: var(--color-danger-light);
+  border-radius: var(--radius-sm);
+  line-height: 1.5;
 }
 
 .icon {

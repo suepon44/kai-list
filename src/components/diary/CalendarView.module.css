@@ -1,40 +1,46 @@
 .calendar {
   background-color: var(--color-surface);
   border-radius: var(--radius-md);
-  border: 1px solid var(--color-border);
   overflow: hidden;
+  box-shadow: var(--shadow-sm);
 }
 
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--spacing-sm) var(--spacing-md);
-  background-color: var(--color-primary);
+  padding: var(--spacing-md);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
   color: #ffffff;
 }
 
 .monthLabel {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.0625rem;
+  font-weight: 700;
   margin: 0;
 }
 
 .navButton {
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  padding: var(--spacing-sm);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
   border-radius: var(--radius-sm);
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.1);
   color: #ffffff;
   font-size: 1rem;
   cursor: pointer;
   font-family: inherit;
   line-height: 1;
-  transition: background-color 0.15s ease;
+  transition: all 0.2s ease;
+  min-width: 36px;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .navButton:hover {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.6);
 }
 
 .navButton:focus-visible {
@@ -46,14 +52,14 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   background-color: var(--color-bg);
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border-light);
 }
 
 .weekdayCell {
   text-align: center;
   font-size: 0.75rem;
-  font-weight: 600;
-  padding: var(--spacing-xs) 0;
+  font-weight: 700;
+  padding: var(--spacing-sm) 0;
   color: var(--color-text-secondary);
 }
 
@@ -64,8 +70,8 @@
 
 .dayCell {
   min-height: 64px;
-  border-right: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border-light);
+  border-bottom: 1px solid var(--color-border-light);
   padding: var(--spacing-xs);
   cursor: pointer;
   background: none;
@@ -80,7 +86,7 @@
 }
 
 .dayCell:hover {
-  background-color: var(--color-bg);
+  background-color: var(--color-primary-bg);
 }
 
 .dayCell:focus-visible {
@@ -89,7 +95,7 @@
 }
 
 .outside {
-  opacity: 0.35;
+  opacity: 0.3;
 }
 
 .dayNumber {
@@ -97,7 +103,7 @@
   align-items: center;
   gap: var(--spacing-xs);
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--color-text);
   margin-bottom: 2px;
 }
@@ -124,6 +130,6 @@
   display: block;
   font-size: 0.5625rem;
   color: var(--color-primary);
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.3;
 }

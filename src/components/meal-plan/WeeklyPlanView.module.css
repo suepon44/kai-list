@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
+  gap: var(--spacing-lg);
 }
 
 .header {
@@ -11,10 +11,11 @@
 }
 
 .title {
-  font-size: 1.125rem;
-  font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: 700;
   margin: 0;
   color: var(--color-text);
+  letter-spacing: -0.01em;
 }
 
 .headerActions {
@@ -25,19 +26,26 @@
 .savedButton,
 .saveButton,
 .resetButton {
-  padding: var(--spacing-xs) var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: 0.8125rem;
+  font-weight: 600;
   cursor: pointer;
   font-family: inherit;
-  transition: background-color 0.15s ease;
+  transition: all 0.2s ease;
+}
+
+.savedButton:active,
+.saveButton:active,
+.resetButton:active {
+  transform: scale(0.97);
 }
 
 .saveButton {
   background-color: var(--color-primary);
   color: #ffffff;
+  box-shadow: var(--shadow-xs);
 }
 
 .saveButton:hover {
@@ -47,33 +55,34 @@
 .savedButton {
   background-color: var(--color-surface);
   color: var(--color-primary);
-  border: 1px solid var(--color-primary);
+  border: 1.5px solid var(--color-primary);
 }
 
 .savedButton:hover {
-  background-color: rgba(46, 125, 50, 0.05);
+  background-color: var(--color-primary-bg);
 }
 
 .resetButton {
   background-color: var(--color-surface);
   color: var(--color-text-secondary);
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-border);
 }
 
 .weekStartDateInput {
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border: 1px solid var(--color-border);
+  padding: var(--spacing-sm);
+  border: 1.5px solid var(--color-border);
   border-radius: var(--radius-sm);
   font-size: 0.8125rem;
   font-family: inherit;
   background-color: var(--color-surface);
   color: var(--color-text);
   outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .weekStartDateInput:focus {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.15);
+  box-shadow: 0 0 0 3px rgba(58, 138, 63, 0.12);
 }
 
 .resetButton:hover {
@@ -90,7 +99,7 @@
 .grid {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-md);
 }
 
 /* Save dialog */
@@ -98,13 +107,27 @@
   border: none;
   border-radius: var(--radius-lg);
   padding: 0;
-  max-width: 360px;
+  max-width: 380px;
   width: calc(100% - var(--spacing-lg) * 2);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-lg);
+  animation: dialogSlideIn 0.2s ease;
+}
+
+@keyframes dialogSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 .saveDialog::backdrop {
   background-color: var(--color-overlay);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .saveDialogContent {
@@ -115,8 +138,8 @@
 }
 
 .saveDialogTitle {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.0625rem;
+  font-weight: 700;
   margin: 0;
   color: var(--color-text);
 }
@@ -129,22 +152,23 @@
 
 .saveDialogLabel {
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--color-text);
 }
 
 .saveDialogInput {
-  padding: var(--spacing-sm);
-  border: 1px solid var(--color-border);
+  padding: 10px var(--spacing-md);
+  border: 1.5px solid var(--color-border);
   border-radius: var(--radius-sm);
   font-size: 0.875rem;
   font-family: inherit;
   outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .saveDialogInput:focus {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.15);
+  box-shadow: 0 0 0 3px rgba(58, 138, 63, 0.12);
 }
 
 .saveDialogError {
@@ -161,21 +185,23 @@
 .overwriteLabel {
   font-size: 0.8125rem;
   color: var(--color-text-secondary);
+  font-weight: 500;
 }
 
 .overwriteSelect {
-  padding: var(--spacing-sm);
-  border: 1px solid var(--color-border);
+  padding: 10px var(--spacing-md);
+  border: 1.5px solid var(--color-border);
   border-radius: var(--radius-sm);
   font-size: 0.875rem;
   font-family: inherit;
   outline: none;
   background-color: var(--color-surface);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .overwriteSelect:focus {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.15);
+  box-shadow: 0 0 0 3px rgba(58, 138, 63, 0.12);
 }
 
 .saveDialogActions {
@@ -186,28 +212,35 @@
 
 .cancelButton,
 .confirmSaveButton {
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: 10px var(--spacing-lg);
   border: none;
   border-radius: var(--radius-sm);
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   font-family: inherit;
-  transition: background-color 0.15s ease;
+  transition: all 0.2s ease;
+}
+
+.cancelButton:active,
+.confirmSaveButton:active {
+  transform: scale(0.97);
 }
 
 .cancelButton {
-  background-color: var(--color-border);
+  background-color: var(--color-bg);
   color: var(--color-text);
+  border: 1.5px solid var(--color-border);
 }
 
 .cancelButton:hover {
-  background-color: #bdbdbd;
+  background-color: var(--color-border-light);
 }
 
 .confirmSaveButton {
   background-color: var(--color-primary);
   color: #ffffff;
+  box-shadow: var(--shadow-xs);
 }
 
 .confirmSaveButton:hover {

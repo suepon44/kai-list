@@ -2,6 +2,10 @@
   display: flex;
   gap: var(--spacing-sm);
   align-items: flex-end;
+  padding: var(--spacing-sm);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
 }
 
 .nameField {
@@ -26,24 +30,29 @@
 
 .removeButton {
   flex-shrink: 0;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-border);
   border-radius: var(--radius-sm);
   background-color: var(--color-surface);
   color: var(--color-danger);
   font-size: 1.25rem;
   cursor: pointer;
-  transition: background-color 0.15s ease;
+  transition: all 0.2s ease;
   padding: 0;
   font-family: inherit;
 }
 
 .removeButton:hover {
   background-color: var(--color-danger-light);
+  border-color: var(--color-danger);
+}
+
+.removeButton:active {
+  transform: scale(0.95);
 }
 
 .removeButton:focus-visible {
@@ -58,7 +67,7 @@
   }
 
   .nameField {
-    flex-basis: calc(100% - 44px);
+    flex-basis: calc(100% - 48px);
   }
 
   .quantityField {

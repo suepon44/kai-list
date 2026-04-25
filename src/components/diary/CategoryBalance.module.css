@@ -9,15 +9,15 @@
   flex-wrap: wrap;
   align-items: center;
   gap: var(--spacing-sm);
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: var(--spacing-md);
   background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
 }
 
 .dateInput {
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border: 1px solid var(--color-border);
+  padding: var(--spacing-sm);
+  border: 1.5px solid var(--color-border);
   border-radius: var(--radius-sm);
   font-size: 0.875rem;
   font-family: inherit;
@@ -25,11 +25,13 @@
   background-color: var(--color-surface);
   flex: 1;
   min-width: 0;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .dateInput:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 1px;
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(58, 138, 63, 0.12);
 }
 
 .dateSeparator {
@@ -39,20 +41,22 @@
 }
 
 .resetButton {
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border: 1px solid var(--color-border);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1.5px solid var(--color-border);
   border-radius: var(--radius-sm);
-  background-color: var(--color-bg);
+  background-color: var(--color-surface);
   color: var(--color-text);
   font-size: 0.8125rem;
+  font-weight: 600;
   font-family: inherit;
   cursor: pointer;
   white-space: nowrap;
-  transition: background-color 0.15s ease;
+  transition: all 0.2s ease;
 }
 
 .resetButton:hover {
-  background-color: var(--color-border);
+  background-color: var(--color-bg);
+  border-color: var(--color-text-secondary);
 }
 
 .resetButton:focus-visible {
@@ -72,11 +76,11 @@
 .chartItem {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  padding: var(--spacing-sm) var(--spacing-md);
+  gap: var(--spacing-xs);
+  padding: var(--spacing-md);
   background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
 }
 
 .chartHeader {
@@ -86,8 +90,8 @@
 }
 
 .categoryName {
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: 0.9375rem;
+  font-weight: 600;
   color: var(--color-text);
 }
 
@@ -95,26 +99,30 @@
   font-size: 0.75rem;
   color: var(--color-text-secondary);
   white-space: nowrap;
+  font-weight: 500;
 }
 
 .barTrack {
   width: 100%;
   height: 12px;
-  background-color: var(--color-bg);
-  border-radius: 6px;
+  background-color: var(--color-border-light);
+  border-radius: var(--radius-full);
   overflow: hidden;
 }
 
 .barFill {
   height: 100%;
-  border-radius: 6px;
-  transition: width 0.3s ease;
+  border-radius: var(--radius-full);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   min-width: 2px;
 }
 
 .emptyMessage {
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   color: var(--color-text-secondary);
   text-align: center;
-  padding: var(--spacing-lg) 0;
+  padding: var(--spacing-xl) 0;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
 }
