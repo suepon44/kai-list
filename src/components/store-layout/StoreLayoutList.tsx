@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import type { StoreLayout } from '../../types';
 import { ConfirmDialog } from '../common';
+import { forceSeedDemoData } from '../../seed-demo';
 import { StoreLayoutEditor } from './StoreLayoutEditor';
 import styles from './StoreLayoutList.module.css';
 
@@ -30,6 +31,7 @@ export const StoreLayoutList: React.FC<StoreLayoutListProps> = ({
   const [view, setView] = useState<View>('list');
   const [editingLayout, setEditingLayout] = useState<StoreLayout | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<string | null>(null);
+  const [demoConfirmOpen, setDemoConfirmOpen] = useState(false);
 
   const handleNewLayout = () => {
     const newLayout = onAdd('');
@@ -146,6 +148,42 @@ export const StoreLayoutList: React.FC<StoreLayoutListProps> = ({
         onConfirm={handleDeleteConfirm}
         onCancel={handleDeleteCancel}
         variant="danger"
+      />
+
+      {/* デモデータ読み込みボタン */}
+      <div style={{ marginTop: '32px', paddingTop: '16px', borderTop: '1px solid var(--color-border-light)', textAlign: 'center' }}>
+        <button
+          type="button"
+          style={{
+            padding: '10px 20px',
+            border: '1.5px solid var(--color-border)',
+            borderRadius: '8px',
+            backgroundColor: 'var(--color-surface)',
+            color: 'var(--color-text-secondary)',
+            fontSize: '0.8125rem',
+            fontWeight: 600,
+            cursor: 'pointer',
+            fontFamily: 'inherit',
+          }}
+          onClick={() => setDemoConfirmOpen(true)}
+        >
+          🔄 デモデータを読み込む
+        </button>
+      </div>
+
+      <ConfirmDialog
+        open={demoConfirmOpen}
+        title="デモデータの読み込み"
+        message="現在のデータがすべて上書きされます。よろしいですか？"
+        confirmLabel="読み込む"
+        cancelLabel="キャンセル"
+        onConfirm={() => {
+          forceSeedDemoData();
+          setDemoConfirmOpen(false);
+          window.location.reload();
+        }}
+        onCancel={() => setDemoConfirmOpen(false)}
+        variant="warning"
       />
     </div>
   );

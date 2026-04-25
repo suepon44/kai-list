@@ -420,7 +420,11 @@ function buildMealPlans(recipes: Recipe[]): SavedMealPlan[] {
 export function seedDemoData(): void {
   // Only seed if no data exists
   if (localStorage.getItem(STORAGE_KEYS.RECIPES)) return;
+  forceSeedDemoData();
+}
 
+/** 強制的にデモデータを投入する（既存データを上書き） */
+export function forceSeedDemoData(): void {
   const recipes = buildRecipes();
   const mealPlans = buildMealPlans(recipes);
 
