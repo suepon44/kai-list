@@ -5,19 +5,19 @@
     -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.7;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 17px;
 
-  /* カフェ風ナチュラル — 薄めブラウン×ベージュ系 */
-  --color-primary: #d4a07a;
-  --color-primary-light: #e0b896;
-  --color-primary-dark: #b8865e;
+  /* カフェ風ナチュラル — 濃いめブラウン系 */
+  --color-primary: #b8865e;
+  --color-primary-light: #c99b76;
+  --color-primary-dark: #96694a;
   --color-primary-bg: rgba(212, 160, 122, 0.08);
   --color-primary-bg-hover: rgba(212, 160, 122, 0.14);
   --color-secondary: #8bab68;
   --color-danger: #c9544d;
   --color-danger-light: #fdf0ef;
   --color-bg: transparent;
-  --color-surface: rgba(255, 253, 249, 0.3);
+  --color-surface: rgba(255, 253, 249, 0.35);
   --color-text: #2d2420;
   --color-text-secondary: #6b5d52;
   --color-border: #ede5db;
