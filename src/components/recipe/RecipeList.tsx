@@ -5,6 +5,7 @@ import type { ValidationResult } from '../../types';
 import { ConfirmDialog } from '../common';
 import { RecipeDetail } from './RecipeDetail';
 import { RecipeForm } from './RecipeForm';
+import { IngredientMasterList } from './IngredientMasterList';
 import styles from './RecipeList.module.css';
 
 export interface RecipeListProps {
@@ -13,9 +14,14 @@ export interface RecipeListProps {
   onAdd: (input: RecipeInput) => ValidationResult;
   onUpdate: (id: string, input: RecipeInput) => ValidationResult;
   onDelete: (id: string) => void;
+  allIngredients?: string[];
+  customIngredients?: string[];
+  onAddCustomIngredient?: (name: string) => void;
+  onDeleteCustomIngredient?: (name: string) => void;
+  getSuggestions?: (query: string) => string[];
 }
 
-type View = 'list' | 'detail' | 'form';
+type View = 'list' | 'detail' | 'form' | 'ingredient-master';
 
 export const RecipeList: React.FC<RecipeListProps> = ({
   recipes,
@@ -23,6 +29,11 @@ export const RecipeList: React.FC<RecipeListProps> = ({
   onAdd,
   onUpdate,
   onDelete,
+  allIngredients = [],
+  customIngredients = [],
+  onAddCustomIngredient,
+  onDeleteCustomIngredient,
+  getSuggestions,
 }) => {
   const [view, setView] = useState<View>('list');
   const [selectedRecipe, setSelectedRecipe] = useState<Recipe | undefined>();
@@ -93,6 +104,23 @@ export const RecipeList: React.FC<RecipeListProps> = ({
     setView('list');
   };
 
+  const handleShowIngredientMaster = () => {
+    setView('ingredient-master');
+  };
+
+  if (view === 'ingredient-master') {
+    return (
+      <IngredientMasterList
+        recipes={recipes}
+        allIngredients={allIngredients}
+        customIngredients={customIngredients}
+        onAddCustom={onAddCustomIngredient ?? (() => {})}
+        onDeleteCustom={onDeleteCustomIngredient ?? (() => {})}
+        onBack={handleBackToList}
+      />
+    );
+  }
+
   if (view === 'form') {
     return (
       <RecipeForm
@@ -100,6 +128,7 @@ export const RecipeList: React.FC<RecipeListProps> = ({
         categories={categories}
         onSubmit={handleFormSubmit}
         onCancel={handleFormCancel}
+        getSuggestions={getSuggestions}
       />
     );
   }
@@ -133,13 +162,22 @@ export const RecipeList: React.FC<RecipeListProps> = ({
     <div className={styles.container}>
       <div className={styles.header}>
         <h2 className={styles.title}>レシピ一覧</h2>
-        <button
-          type="button"
-          className={styles.addButton}
-          onClick={handleNewRecipe}
-        >
-          新規レシピ
-        </button>
+        <div className={styles.headerButtons}>
+          <button
+            type="button"
+            className={styles.secondaryButton}
+            onClick={handleShowIngredientMaster}
+          >
+            材料一覧
+          </button>
+          <button
+            type="button"
+            className={styles.addButton}
+            onClick={handleNewRecipe}
+          >
+            新規レシピ
+          </button>
+        </div>
       </div>
 
       {recipes.length === 0 ? (

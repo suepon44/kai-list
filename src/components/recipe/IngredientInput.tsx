@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import type { Ingredient } from '../../types';
 import type { SelectOption } from '../common';
 import { TextInput, NumberInput, Select } from '../common';
@@ -11,6 +11,8 @@ export interface IngredientInputProps {
   onChange: (index: number, ingredient: Ingredient) => void;
   onRemove: (index: number) => void;
   canRemove: boolean;
+  suggestions?: string[];
+  onQueryChange?: (query: string) => void;
 }
 
 export const IngredientInput: React.FC<IngredientInputProps> = ({
@@ -20,7 +22,21 @@ export const IngredientInput: React.FC<IngredientInputProps> = ({
   onChange,
   onRemove,
   canRemove,
+  suggestions = [],
+  onQueryChange,
 }) => {
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const blurTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (blurTimeoutRef.current) {
+        clearTimeout(blurTimeoutRef.current);
+      }
+    };
+  }, []);
+
   const categoryOptions: SelectOption[] = [
     { value: '', label: '未分類' },
     ...categories.map((cat) => ({ value: cat, label: cat })),
@@ -28,6 +44,27 @@ export const IngredientInput: React.FC<IngredientInputProps> = ({
 
   const handleNameChange = (value: string) => {
     onChange(index, { ...ingredient, name: value });
+    onQueryChange?.(value);
+    setShowSuggestions(value.trim().length > 0);
+  };
+
+  const handleSuggestionClick = (name: string) => {
+    onChange(index, { ...ingredient, name });
+    onQueryChange?.('');
+    setShowSuggestions(false);
+  };
+
+  const handleNameBlur = () => {
+    // Small delay so click on suggestion registers before hiding
+    blurTimeoutRef.current = setTimeout(() => {
+      setShowSuggestions(false);
+    }, 200);
+  };
+
+  const handleNameFocus = () => {
+    if (ingredient.name.trim().length > 0 && suggestions.length > 0) {
+      setShowSuggestions(true);
+    }
   };
 
   const handleQuantityChange = (value: number | '') => {
@@ -42,17 +79,47 @@ export const IngredientInput: React.FC<IngredientInputProps> = ({
     onChange(index, { ...ingredient, category: value || null });
   };
 
+  const visibleSuggestions = suggestions.slice(0, 5);
+
   return (
     <div className={styles.row} role="group" aria-label={`材料 ${index + 1}`}>
       <div className={styles.nameField}>
-        <TextInput
-          label="材料名"
-          value={ingredient.name}
-          onChange={handleNameChange}
-          placeholder="例: にんじん"
-          required
-          id={`ingredient-name-${index}`}
-        />
+        <div
+          className={styles.nameFieldWrapper}
+          onBlur={handleNameBlur}
+          onFocus={handleNameFocus}
+        >
+          <TextInput
+            label="材料名"
+            value={ingredient.name}
+            onChange={handleNameChange}
+            placeholder="例: にんじん"
+            required
+            id={`ingredient-name-${index}`}
+          />
+          {showSuggestions && visibleSuggestions.length > 0 && (
+            <ul
+              className={styles.suggestionList}
+              role="listbox"
+              aria-label="材料名の候補"
+            >
+              {visibleSuggestions.map((name) => (
+                <li
+                  key={name}
+                  className={styles.suggestionItem}
+                  role="option"
+                  aria-selected={false}
+                  onMouseDown={(e) => {
+                    e.preventDefault(); // Prevent blur before click
+                    handleSuggestionClick(name);
+                  }}
+                >
+                  {name}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
       <div className={styles.quantityField}>
         <NumberInput

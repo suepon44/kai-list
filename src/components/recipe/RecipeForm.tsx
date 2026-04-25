@@ -11,6 +11,7 @@ export interface RecipeFormProps {
   categories: string[];
   onSubmit: (input: RecipeInput) => { valid: boolean; errors: string[] };
   onCancel: () => void;
+  getSuggestions?: (query: string) => string[];
 }
 
 function createEmptyIngredient(): Ingredient {
@@ -22,6 +23,7 @@ export const RecipeForm: React.FC<RecipeFormProps> = ({
   categories,
   onSubmit,
   onCancel,
+  getSuggestions,
 }) => {
   const [name, setName] = useState(recipe?.name ?? '');
   const [ingredients, setIngredients] = useState<Ingredient[]>(
@@ -34,6 +36,11 @@ export const RecipeForm: React.FC<RecipeFormProps> = ({
   const [page, setPage] = useState<number | ''>(recipe?.source?.page ?? '');
   const [url, setUrl] = useState(recipe?.source?.url ?? '');
   const [errors, setErrors] = useState<string[]>([]);
+  const [suggestionQueries, setSuggestionQueries] = useState<Record<number, string>>({});
+
+  const handleQueryChange = (index: number, query: string) => {
+    setSuggestionQueries((prev) => ({ ...prev, [index]: query }));
+  };
 
   const handleIngredientChange = (index: number, updated: Ingredient) => {
     setIngredients((prev) => prev.map((ing, i) => (i === index ? updated : ing)));
@@ -112,6 +119,8 @@ export const RecipeForm: React.FC<RecipeFormProps> = ({
               onChange={handleIngredientChange}
               onRemove={handleIngredientRemove}
               canRemove={ingredients.length > 1}
+              suggestions={getSuggestions?.(suggestionQueries[index] ?? '')}
+              onQueryChange={(query) => handleQueryChange(index, query)}
             />
           ))}
         </div>

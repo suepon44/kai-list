@@ -21,4 +21,5 @@ export const STORAGE_KEYS = {
   CATEGORIES: 'sgl:categories',
   CHECKLIST_STATE: 'sgl:checklist-state',
   EXTRA_ITEMS_HISTORY: 'sgl:extra-items-history',
+  INGREDIENT_MASTER: 'sgl:ingredient-master',
 } as const;

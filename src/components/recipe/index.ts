@@ -9,3 +9,6 @@ export type { RecipeDetailProps } from './RecipeDetail';
 
 export { IngredientInput } from './IngredientInput';
 export type { IngredientInputProps } from './IngredientInput';
+
+export { IngredientMasterList } from './IngredientMasterList';
+export type { IngredientMasterListProps } from './IngredientMasterList';

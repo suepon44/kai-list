@@ -10,6 +10,7 @@ import { useMealPlan } from './hooks/useMealPlan';
 import { useShoppingList } from './hooks/useShoppingList';
 import { useStoreLayout } from './hooks/useStoreLayout';
 import { useDiary } from './hooks/useDiary';
+import { useIngredientMaster } from './hooks/useIngredientMaster';
 import './App.css';
 
 /** タブIDから表示タイトルを取得する */
@@ -88,6 +89,14 @@ function App() {
     setDateRange,
   } = useDiary(savedPlans, recipes);
 
+  const {
+    allIngredients,
+    customIngredients,
+    addCustomIngredient,
+    deleteCustomIngredient,
+    getSuggestions,
+  } = useIngredientMaster(recipes);
+
   const renderPage = () => {
     switch (activeTab) {
       case 'recipes':
@@ -98,6 +107,11 @@ function App() {
             onAdd={addRecipe}
             onUpdate={updateRecipe}
             onDelete={deleteRecipe}
+            allIngredients={allIngredients}
+            customIngredients={customIngredients}
+            onAddCustomIngredient={addCustomIngredient}
+            onDeleteCustomIngredient={deleteCustomIngredient}
+            getSuggestions={getSuggestions}
           />
         );
       case 'meal-plan':
