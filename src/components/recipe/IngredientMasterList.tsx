@@ -78,6 +78,25 @@ export const IngredientMasterList: React.FC<IngredientMasterListProps> = ({
     );
   }, [ingredientList, searchQuery]);
 
+  /** カテゴリ別にグループ化 */
+  const groupedByCategory = useMemo(() => {
+    const groups = new Map<string, IngredientInfo[]>();
+    for (const item of filteredList) {
+      const cat = item.categories.length > 0 ? item.categories[0] : '未分類';
+      if (!groups.has(cat)) {
+        groups.set(cat, []);
+      }
+      groups.get(cat)!.push(item);
+    }
+    // カテゴリ名でソート、未分類は最後
+    const sorted = [...groups.entries()].sort((a, b) => {
+      if (a[0] === '未分類') return 1;
+      if (b[0] === '未分類') return -1;
+      return a[0].localeCompare(b[0], 'ja');
+    });
+    return sorted;
+  }, [filteredList]);
+
   const handleAddCustom = () => {
     const trimmed = newIngredientName.trim();
     if (!trimmed) return;
@@ -144,36 +163,36 @@ export const IngredientMasterList: React.FC<IngredientMasterListProps> = ({
         </p>
       ) : (
         <div className={styles.list} role="list">
-          {filteredList.map((item) => (
-            <div key={item.name} className={styles.listItem} role="listitem">
-              <div className={styles.itemInfo}>
-                <span className={styles.itemName}>{item.name}</span>
-                <div className={styles.itemMeta}>
-                  {item.categories.length > 0 && (
-                    <span className={styles.itemCategory}>
-                      {item.categories.join(', ')}
-                    </span>
-                  )}
-                  {item.usageCount > 0 && (
-                    <span className={styles.itemUsage}>
-                      {item.usageCount}レシピ
-                    </span>
-                  )}
+          {groupedByCategory.map(([category, items]) => (
+            <div key={category} className={styles.categoryGroup}>
+              <h3 className={styles.categoryHeader}>{category}</h3>
+              {items.map((item) => (
+                <div key={item.name} className={styles.listItem} role="listitem">
+                  <div className={styles.itemInfo}>
+                    <span className={styles.itemName}>{item.name}</span>
+                    <div className={styles.itemMeta}>
+                      {item.usageCount > 0 && (
+                        <span className={styles.itemUsage}>
+                          {item.usageCount}レシピ
+                        </span>
+                      )}
+                      {item.isCustom && (
+                        <span className={styles.customBadge}>カスタム</span>
+                      )}
+                    </div>
+                  </div>
                   {item.isCustom && (
-                    <span className={styles.customBadge}>カスタム</span>
+                    <button
+                      type="button"
+                      className={styles.deleteButton}
+                      onClick={() => onDeleteCustom(item.name)}
+                      aria-label={`${item.name} を削除`}
+                    >
+                      ✕
+                    </button>
                   )}
                 </div>
-              </div>
-              {item.isCustom && (
-                <button
-                  type="button"
-                  className={styles.deleteButton}
-                  onClick={() => onDeleteCustom(item.name)}
-                  aria-label={`${item.name} を削除`}
-                >
-                  ✕
-                </button>
-              )}
+              ))}
             </div>
           ))}
         </div>

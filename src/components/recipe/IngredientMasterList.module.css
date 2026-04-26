@@ -185,3 +185,18 @@
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-xs);
 }
+
+.categoryGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.categoryHeader {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin: var(--spacing-sm) 0 0 0;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-left: 3px solid var(--color-primary);
+}
