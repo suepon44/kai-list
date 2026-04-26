@@ -93,19 +93,22 @@
 }
 
 /* Mobile: stack fields vertically */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .row {
     flex-wrap: wrap;
+    position: relative;
+    padding-right: 48px;
   }
 
   .nameField {
-    flex-basis: calc(100% - 52px);
+    flex-basis: 100%;
     flex-grow: 0;
   }
 
   .removeButton {
-    flex-basis: 40px;
-    order: 0;
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
   }
 
   .quantityField {
